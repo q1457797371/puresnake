@@ -1,0 +1,36 @@
+<template>
+  <view class="product-list">
+    <repeat for="{{ productList }}" key="key" key="index" index="index" item="item" >
+      <productlistitem :gitem="item"></productlistitem>
+    </repeat>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import ProductListItem from './ProductListItem'
+
+  export default class ProductList extends wepy.component {
+    props = {
+      productList: {},
+      index: {}
+    }
+
+    components = {
+      productlistitem: ProductListItem
+    }
+    methods = {
+      tap () {
+        this.grouplist.name = `Parent Random(${Math.random()})`
+        console.log(`Clicked Group ${this.$index}, ID is ${this.grouplist.id}`)
+      }
+    }
+  }
+</script>
+
+<style type="less">
+  .product-list {
+    width: 750rpx;
+    overflow: hidden;
+  }
+</style>

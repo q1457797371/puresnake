@@ -1,0 +1,229 @@
+<template>
+  <view class="home">
+    <!-- 轮播条 -->
+    <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{imgUrls}}" wx:key="key">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" width="355" height="150"/>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <!-- 导航条 -->
+    <view class="nav_list">
+      <navigator open-type="navigate" url="/pages/sign_in">
+        <image src="../../images/news/发售日历@3x.png" class="nav_icon"></image>
+        <view class="nav_text">发售日历</view>
+      </navigator>
+      <navigator open-type="navigate" url="/pages/exchange_goods">
+        <image src="../../images/news/限时抽奖@3x.png" class="nav_icon"></image>
+        <view class="nav_text">限时抽奖</view>
+      </navigator>
+      <navigator open-type="navigate" url="/pages/wholesale">
+        <image src="../../images/news/今日打卡@3x.png" class="nav_icon"></image>
+        <view class="nav_text">今日打卡</view>
+      </navigator>
+    </view>
+
+    <!-- 资讯 -->
+    <view class="news_section">
+      <view class="news_section__title">
+        <view class="news_section__title_container">
+          <block wx:for="{{newsSectionTitle}}" wx:key="key" bindtap="selectMenu(index,item.channelId)">
+            <view> {{item}}</view>
+          </block>
+        </view>
+      </view>
+      
+      <view class="news_section_list">
+        <navigator class="news_section_item" open-type="navigate" wx:for="{{newsList}}" wx:key="item" url="/pages/home_detail?code={{item.code}}" >
+          <image class="news_section_img" src="{{item.img}}"></image>
+          <view class="news_section_title">{{item.title}}</view>
+          <view>
+            <view>
+              <view class="news_section_category">{{item.category}}</view>
+              <view class="news_section_time">{{item.time}}</view>
+            </view>
+            <view class="news_section_view">{{item.view}}</view>
+          </view>
+        </navigator>
+      </view>
+    </view>
+
+    <!-- <scroll-view scroll-y="true" style="height: 200px;" bindscrolltolower="lower" lower-threshold="30" class="product">
+      <productlist :productList="productList" :indexa="index"></productlist>
+    </scroll-view> -->
+    <toast />
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+  import ProductList from '../../components/ProductList'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '资讯',
+      navigationBarTextStyle: 'black'
+    }
+    components = {
+      toast: Toast,
+      productlist: ProductList
+    }
+
+    data = {
+      imgUrls: [
+        'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+        'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+        'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+      ],
+      indicatorDots: true,
+      autoplay: true,
+      interval: 5000,
+      duration: 1000,
+      indicatorActiveColor: '#fff',
+      currentIndex: 0,
+      newsSectionTitle: ['全部', '篮球', '潮流', '骑行', '跑步', '健身', '足球', '达人', '视频'],
+      newsList: [
+        {
+          img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+          title: 'Jordan Why Not Zer0.1 开箱：顶级的缓震、全…',
+          category: '时尚',
+          time: '7-19',
+          view: '199'
+        },
+        {
+          img: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+          title: 'Jordan Why Not Zer0.1 开箱：顶级的缓震、全…',
+          category: '潮流',
+          time: '8-19',
+          view: '299'
+        },
+        {
+          img: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+          title: 'Jordan Why Not Zer0.1 开箱：顶级的缓震、全…',
+          category: '潮流',
+          time: '8-19',
+          view: '299'
+        },
+        {
+          img: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+          title: 'Jordan Why Not Zer0.1 开箱：顶级的缓震、全…',
+          category: '潮流',
+          time: '8-19',
+          view: '299'
+        },
+        {
+          img: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+          title: 'Jordan Why Not Zer0.1 开箱：顶级的缓震、全…',
+          category: '潮流',
+          time: '8-19',
+          view: '299'
+        }
+      ]
+    }
+
+    computed = {
+    }
+
+    methods = {
+      // 选择新闻类别
+      selectMenu (index, id) {
+        alert(index)
+        this.setData({
+          currentIndex: index
+        })
+      }
+      // changeIndicatorDots: function(e) {
+      //   this.setData({
+      //     indicatorDots: !this.data.indicatorDots
+      //   })
+      // },
+    }
+
+    events = {
+    }
+
+    onLoad() {
+    }
+  }
+</script>
+
+<style lang="less">
+  .home {
+    background-color: #F4F4F4;
+
+    .swiper {
+      height: 348rpx;
+      .slide-image {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .nav_list {
+      color: #404040;
+      display: flex;
+      font-size: 26rpx;
+      justify-content: space-between;
+      padding: 17rpx 50rpx;
+      background-color: #FFFFFF;
+      navigator {
+        text-align: center
+      }
+      .nav_icon {
+        height: 80rpx;
+        margin: 0 auto;
+        width: 80rpx;
+        margin-bottom: 14rpx;
+      }
+      .nav_text {
+        font-size: 26rpx
+      }
+    }
+
+    .news_section {
+      margin-top: 20px;
+      .news_section__title {
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 4px;
+        overflow: scroll;
+        background-color: #FFFFFF;
+        .news_section__title_container {
+          width: 900px;
+          view {
+            float: left;
+            // display: inline-block;
+            width: 100px;
+            text-align: center;
+            color: #9e9e9e;
+            font-size: 12px;
+          }
+          .current {
+            color: #2c86ee;
+            background-color: #ffffff;
+          }
+        }
+      }
+      .news_section__title::-webkit-scrollbar {
+        display: none;
+      }
+
+      .news_section_item {
+        margin-bottom: 20px;
+        .news_section_img {
+          width: 100%;
+          height: 200px;
+        }
+        .news_section_title {
+          font-size: 16px;
+        }
+      }
+    }
+
+      
+  }
+</style>

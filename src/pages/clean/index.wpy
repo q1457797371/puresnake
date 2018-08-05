@@ -1,0 +1,39 @@
+<template>
+  <view class="home">
+    <text>清洗</text>
+    <toast />
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'PureSnake',
+      navigationBarTextStyle: 'black'
+    }
+    components = {
+      toast: Toast
+    }
+
+    data = {
+    }
+
+    computed = {
+    }
+
+    methods = {
+    }
+
+    events = {
+    }
+
+    onLoad() {
+    }
+  }
+</script>
+
+<style lang="less">
+</style>

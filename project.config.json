@@ -1,0 +1,15 @@
+{
+	"description": "Snake-专注于潮流时尚",
+	"setting": {
+		"urlCheck": true,
+		"es6": false,
+		"postcss": false,
+		"minified": false,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"appid": "wx804224c0ee49857f",
+	"projectname": "puresnake",
+	"miniprogramRoot": "./dist",
+	"condition": {}
+}
