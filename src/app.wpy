@@ -1,5 +1,5 @@
 <style lang="less">
-  // @import "./index.wxss";
+  @import "./weui.wxss";
   @import "./styles/base";
   @import "./styles/icon";
   @import "./styles/style";

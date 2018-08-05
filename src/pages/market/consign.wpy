@@ -14,24 +14,52 @@
     <!-- 商品描述 -->
     <view class="flex-layout consign-content">
       <view class="consign-content-product-property">
-        <view class="flex-layout consign-content-product-property-item">
-          <view class="title">尺码</view>
-          <view class="content">请选择</view>
+        <view class="weui-cells">
+          <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">尺码</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0">
+              <view style="display: inline-block;vertical-align:middle; font-size: 17px;">请选择</view>
+            </view>
+          </view>
         </view>
 
-        <view class="flex-layout consign-content-product-property-item">
-          <view class="title">是否原盒</view>
-          <view class="content">请选择</view>
+        <view class="weui-cells">
+          <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">是否原盒</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0">
+              <view style="display: inline-block;vertical-align:middle; font-size: 17px;">请选择</view>
+            </view>
+          </view>
         </view>
 
-        <view class="flex-layout consign-content-product-property-item">
-          <view class="title">商品照片</view>
-          <view class="content">请选择</view>
+        <view class="weui-cells">
+          <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">商品照片</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0">
+              <view style="display: inline-block;vertical-align:middle; font-size: 17px;">请选择</view>
+            </view>
+          </view>
         </view>
 
-        <view class="flex-layout consign-content-product-property-item">
-          <view class="title">商品描述</view>
-          <view class="content">请选择</view>
+        <view class="weui-cells">
+          <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">商品描述</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0">
+              <view style="display: inline-block;vertical-align:middle; font-size: 17px;">请选择</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="page">
+      <view class="page__hd">
+        <view class="page__title">ActionSheet</view>
+        <view class="page__desc">弹出式菜单，采用小程序原生的actionsheet</view>
+      </view>
+      <view class="page__bd">
+        <view class="weui-btn-area">
+            <button type="default" bindtap="open">ActionSheet</button>
         </view>
       </view>
     </view>
@@ -50,8 +78,6 @@
 <script>
   import wepy from 'wepy'
   import Toast from 'wepy-com-toast'
-  // import zanActionsheet from '../../components/actionsheet/index'
-  // "zan-actionsheet": "path/to/zanui-weapp/dist/actionsheet/index"
 
   export default class Consign extends wepy.page {
     config = {
@@ -69,6 +95,16 @@
     }
 
     methods = {
+      open: function() {
+        wx.showActionSheet({
+          itemList: ['A', 'B', 'C'],
+          success: function(res) {
+            if (!res.cancel) {
+              console.log(res.tapIndex)
+            }
+          }
+        })
+      }
     }
 
     events = {
