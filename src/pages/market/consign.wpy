@@ -12,12 +12,12 @@
     <!-- 是否原盒 -->
     <!-- 商品照片 -->
     <!-- 商品描述 -->
-    <view class="flex-layout consign-content">
+    <view class="consign-content">
       <view class="consign-content-product-property">
         <view class="weui-cells">
           <view class="weui-cell weui-cell_access">
             <view class="weui-cell__bd">尺码</view>
-            <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0">
+            <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0" bindtap="openSizeDialog">
               <view style="display: inline-block;vertical-align:middle; font-size: 17px;">请选择</view>
             </view>
           </view>
@@ -50,16 +50,100 @@
           </view>
         </view>
       </view>
+
+      <view class="consign-content-nursing-service">
+        <view class="flex-layout consign-content-nursing-service-title">
+          <view class="title">选择护理服务</view>
+          <view>
+            <icon type="info_circle" size="23"></icon>
+          </view>
+        </view>
+
+        <view class="consign-content-nursing-service-content">
+          <view class="flex-layout" wx:for="{{nursingList}}" wx:for-index="idx" wx:for-item="item">
+            <view>
+              <view class="flex-layout">
+                <view>
+                  <image src="{{ item.img }}" class="slide-image" width="355" height="150"/>
+                </view>
+                <view>
+                  <view class="placeholder">{{ item.name }}</view>
+                  <view class="placeholder">{{ item.price }}</view>
+                </view>
+              </view>
+            </view>
+
+            <view @tap="checkboxChange({{item}})">
+              <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+              <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="fee">
+        <view class="flex-layout">
+          <!-- 输入 -->
+          <view>
+            <input bindinput="bindKeyInput" placeholder="输入同步到view中"/>
+          </view>
+          <view>
+            <view>需支付押金</view>
+            <view>89</view>
+          </view>
+        </view>
+
+        <view class="flex-layout">
+          <view>护理费用</view>
+          <view>59.00</view>
+        </view>
+        <view class="flex-layout">
+          <view>手续费(xx%)</view>
+          <view>59.00</view>
+        </view>
+        <view class="flex-layout">
+          <view>预计收入</view>
+          <view>59.00</view>
+        </view>
+
+        <view>
+          <view>请添加收货地址</view>
+        </view>
+
+        <checkbox-group bindchange="bindAgreeChange">
+          <label class="weui-agree" for="weuiAgree">
+            <view class="weui-agree__text">
+              <checkbox class="weui-agree__checkbox" id="weuiAgree" value="agree" checked="{{isAgree}}" />
+              <view class="weui-agree__checkbox-icon">
+                  <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
+              </view>
+              阅读并同意<navigator url="" class="weui-agree__link">《相关条款》</navigator>
+            </view>
+          </label>
+        </checkbox-group>
+
+      </view>
     </view>
 
-    <view class="page">
-      <view class="page__hd">
-        <view class="page__title">ActionSheet</view>
-        <view class="page__desc">弹出式菜单，采用小程序原生的actionsheet</view>
-      </view>
-      <view class="page__bd">
-        <view class="weui-btn-area">
-            <button type="default" bindtap="open">ActionSheet</button>
+    <view class="weui-popup" wx:if="{{isPopUp}}">
+      <view class="weui-mask"></view>
+      <view class="weui-actionsheet weui-actionsheet_toggle">
+        <!-- <view class="actionsheet__title">
+          <view class="weui-actionsheet__title-text">
+            这是一个标题，可以为一行或者两行。
+          </view>
+        </view> -->
+
+        <view class="weui-actionsheet__menu">
+          <view class="weui-actionsheet__title-text">
+            这是一个标题，可以为一行或者两行。
+          </view>
+        </view>
+
+        <view class="weui-actionsheet__action" >
+          <view class="weui-actionsheet__cell" bindtap="close">
+            取消
+          </view>
         </view>
       </view>
     </view>
@@ -71,6 +155,12 @@
     <!-- 卖家协议 -->
 
     <!-- 提交按钮 -->
+    <view class="flex-layout consign-footer">
+      <!-- <view class="consign-header-proudct-add">
+        添加商品
+      </view> -->
+      <button class="weui-btn" type="primary" bindtap="showTopTips">确定</button>
+    </view>
     <toast />
   </view>
 </template>
@@ -89,20 +179,77 @@
     }
 
     data = {
+      isSizePopUp: false,
+      nursingList: [
+        {
+          id: '1',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1ftz5oe010hj303i029dfr.jpg',
+          name: '整体精洗消毒（所有鞋类适用）',
+          price: '59.00',
+          checked: true
+        },
+        {
+          id: '2',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1ftz5oe10p4j3020036gll.jpg',
+          name: '球鞋氧化修复',
+          price: '59.00',
+          checked: false
+        },
+        {
+          id: '3',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1ftz5oe1p37j303903iwet.jpg',
+          name: '球鞋全掌贴底',
+          price: '59.00',
+          checked: true
+        }
+      ],
+      inputValue: '',
+      isAgree: false
     }
 
     computed = {
     }
 
     methods = {
-      open: function() {
-        wx.showActionSheet({
-          itemList: ['A', 'B', 'C'],
-          success: function(res) {
-            if (!res.cancel) {
-              console.log(res.tapIndex)
+
+      openSizeDialog: function () {
+        this.isSizePopUp = true
+      },
+
+      close: function () {
+        this.isSizePopUp = false
+      },
+
+      checkboxChange: function (e) {
+        console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+
+        let nursingList = this.data.nursingList
+        let values = e.detail.value
+        for (let i = 0, lenI = nursingList.length; i < lenI; ++i) {
+          nursingList[i].checked = false
+
+          for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
+            if (nursingList[i].value === values[j]) {
+              nursingList[i].checked = true
+              break
             }
           }
+        }
+
+        this.setData({
+          nursingList: nursingList
+        })
+      },
+
+      bindKeyInput: function(e) {
+        this.setData({
+          inputValue: e.detail.value
+        })
+      },
+
+      bindAgreeChange: function (e) {
+        this.setData({
+          isAgree: !!e.detail.value.length
         })
       }
     }
@@ -149,6 +296,61 @@
             color: #9B9B9B;
           }
         }
+      }
+
+      &-nursing-service {
+        margin-top: 10rpx;
+
+        &-content {
+          > view {
+            > view:nth-child(1) {
+              > view {
+                > view:nth-child(1) {
+                  width: 200rpx;
+                  height: 200rpx;
+                  image {
+                    width: 100%;
+                    height: 100%;
+                  }
+                }
+                > view:nth-child(2) {
+
+                }
+              }
+            }
+            > view:nth-child(2) {
+
+            }
+          }
+        }
+      }
+    }
+
+    .weui-popup {
+      .weui-mask {
+        position: fixed;
+        z-index: 200;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+      }
+
+      .weui-actionsheet {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        transform: translate(0, 100%);
+        backface-visibility: hidden;
+        z-index: 201;
+        width: 100%;
+        background-color: #EFEFF4;
+        transition: transform .3s;
+      }
+
+      .weui-actionsheet_toggle {
+        transform: translate(0, 0);
       }
     }
   }
