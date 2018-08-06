@@ -20,42 +20,14 @@
             如何确保求购信息和出售信息的有效？
           </view>
           <view class="desc">
-            1. 球鞋指数平台发布的每一条出售信息或求购信息，都要求发布者支付押金，押金在交易完成或信息过期后全额退还。其中现货及二手交易每条根据商品价格高低各有不同，预售交易的押金为售价的10%。<view class="desc2">（详见下方表格）</view>
-          </view>
-          <view>
-            <view class="table">
-              <view class="tr"></view>
+            1. snake平台发布的每一条出售信息或求购信息，都要求发布者支付押金，押金在交易完成或信息过期后全额退还。其中现货及二手交易每条根据商品价格高低各有不同，预售交易的押金为售价的10%。<text class="desc2">（详见下方表格）</text>
+            <view>
+              <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu06frpuafj30s60ebq5w.jpg" mode="aspectFit"/>
             </view>
-
-            <table>
-              <thead>
-                <tr>
-                  <th>Header content 1</th>
-                  <th>Header content 2</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>商品价格</th>
-                  <th>押金金额</th>
-                  <th>违约后对方获得赔偿</th>
-                  <th></th>
-                </tr>
-                <tr>
-                  <td>1500元以下</td>
-                  <td>29元</td>
-                  <td>23.2元</td>
-                </tr>
-                <tr>
-                  <td>1500元到2499.99元</td>
-                  <td>49元</td>
-                  <td>39.2元</td>
-                </tr>
-              </tbody>
-            </table>
           </view>
+
           <view class="desc">
-            2. 球鞋指数平台将在求购信息和出售信息被响应后向用户通过短信、系统推送、站内信等方式实时发起通知；
+            2. snake平台将在求购信息和出售信息被响应后向用户通过短信、系统推送、站内信等方式实时发起通知；
           </view>
           <view class="desc">
             3. 对于交易违约的，球鞋指数将自动将押金转给交易对方作为补偿。违约情况包括：
@@ -67,10 +39,110 @@
             </view>
           </view>
         </view>
+
+        <view class="seller-notice-content-detail-item">
+          <view class="title">
+            如何确保商品的真假和全新？
+          </view>
+          <view class="desc">
+            1. 所有交易商品必须寄往球鞋指数仓库进行实物认证；
+          </view>
+
+          <view class="desc">
+            2. snake平台对鉴定结果为真、且成色为全新的商品系挂认证吊牌；
+          </view>
+          <view class="desc">
+            3. 对于不确定真假的商品，建议卖家出售之前先到get手机客户端或dunkhome.com拍照做真假鉴定；
+          </view>
+        </view>
+
+        <view class="seller-notice-content-detail-item">
+          <view class="title">
+            真假和全新的标准？
+          </view>
+          <view class="desc">
+            1. 对于商品的真假，以第三方鉴定师团队结果为准；
+          </view>
+          <view class="desc">
+            2. 对于商品全新的标准，包含以下三个要求：
+            <view class="desc-sub">
+              a) 确保使用原鞋盒，且配有盒盖；
+            </view>
+            <view class="desc-sub">
+              b) 商品无明显氧化和开胶、开裂；
+            </view>
+            <view class="desc-sub">
+              c) 无明显的穿着痕迹、无污迹、无破损磨损、无划痕、无褪色；
+            </view>
+          </view>
+        </view>
+
+        <view class="seller-notice-content-detail-item">
+          <view class="title">
+            卖家不发货是否有惩罚？
+          </view>
+          <view class="desc">
+            1. 卖家发起出售信息、或相应买家的求购信息，均需要支付押金（交易完成或信息过期后全额退还）;
+          </view>
+          <view class="desc">
+            2. 买家付款后，球鞋指数向卖家通过短信、系统推送、站内信等方式实时发起通知；
+          </view>
+          <view class="desc">
+            3. 对于超过约定时间未做响应的（买家付款后卖家约定时间内未发货），snake平台自动将押金转给买家作为卖家交易失信的补偿；
+          </view>
+          <view class="desc">
+            4. 建议卖家对出售信息及时更新，无效信息及时下架，避免不必要的押金损失。
+          </view>
+        </view>
+
+        <view class="seller-notice-content-detail-item">
+          <view class="title">
+            买家购买意向反悔是否有惩罚？
+          </view>
+          <view class="desc">
+            1. 买家发起求购信息，需要支付押金（交易完成或信息过期后全额退还）；
+          </view>
+          <view class="desc">
+            2. 卖家确认出售，并支付出售押金后，球鞋指数向买家通过短信、系统推送、站内信等方式实时发起通知；
+          </view>
+          <view class="desc">
+            3. 对于超过72小时未做响应的（卖家确认出售买家72小时未付款），snake平台自动将押金转给卖家作为买家交易失信的补偿；
+          </view>
+          <view class="desc">
+            4. 建议买家对求购信息及时更新，无效信息及时下架，避免不必要的押金损失。
+          </view>
+        </view>
+
+        <view class="seller-notice-content-detail-item">
+          <view class="title">
+            如何发布出售信息?
+          </view>
+          <view class="desc">
+            1. 通过搜索或分类，找到具体鞋款；
+          </view>
+          <view class="desc">
+            2. 点击“我要出售”按钮，选择出售类型、尺码、售价、出售消息有效日期（每次只能挂一双鞋子）;
+          </view>
+          <view class="desc">
+            3. 现货和二手出售支付押金，预售出售支付售价的10%作为押金，交易完成或信息过期后全额退还;
+          </view>
+          <view class="desc">
+            4. 信息发布后在未成交的状态下，可随时撤销。
+          </view>
+        </view>
+
+        <view class="seller-notice-content-detail-item">
+          <view class="title">
+            完整的交易流程是怎样的？?
+          </view>
+          <view class="desc">
+            <view>
+              <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu06frz9y1j30tc165qdg.jpg" mode="scaleToFill" />
+            </view>
+          </view>
+        </view>
       </view>
-
     </view>
-
     <toast />
   </view>
 </template>
@@ -153,6 +225,14 @@
             margin-top: 10rpx;
             font-size: 26rpx;
             font-weight: 300;
+            width: 100%;
+
+            view {
+              width: 100%;
+              image {
+                width: 100%;
+              }
+            }
           }
 
           .desc2 {
