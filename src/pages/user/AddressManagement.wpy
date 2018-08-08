@@ -1,0 +1,134 @@
+<template>
+  <view class="address-management">
+    <view class="address-list">
+      <view class="address-item" wx:for="{{userAddressList}}" wx:for-item="item" wx:key="index">
+        <view class="address-basic-info">
+          <view class="flex-layout">
+            <view class="fullName">{{ item.fullName }}</view>
+            <view class="mobileNumber">{{ item.mobileNumber }}</view>
+          </view>
+
+          <view>
+            <view class="fullName">{{ item.address }}{{ item.detailAddress }}</view>
+          </view>
+        </view>
+
+        <view class="flex-layout address-handle">
+          <view>
+            <icon type="success" size="23" wx:if="{{item.isDefault === 1}}"></icon>
+            <icon type="circle" size="23" wx:else></icon>
+            <text>默认地址</text>
+          </view>
+
+          <view>
+            <text>编辑</text>
+            <text>删除</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="address-add">
+      <button size="default" type="warn" class="button-hover">新增地址</button>
+
+      <button open-type="contact">进入客服会话</button>
+
+      <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button>
+      
+      <button open-type="openSetting">打开授权设置页</button>
+
+    </view>
+    <toast />
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+
+  export default class AddressManagement extends wepy.page {
+    config = {
+      navigationBarTitleText: '地址管理',
+      navigationBarTextStyle: 'black'
+    }
+    components = {
+      toast: Toast
+    }
+
+    data = {
+      userAddressList: [
+        {
+          accountId: 1292929033,
+          id: 5753787,
+          fullName: '程强',
+          mobileNumber: '15394273516',
+          address: '内蒙古自治区呼和浩特市新城区',
+          detailAddress: '西湖北路',
+          isDefault: 1
+        },
+        {
+          accountId: 1292929034,
+          id: 5753788,
+          fullName: '程强',
+          mobileNumber: '18679501585',
+          address: '浙江省杭州市西湖区',
+          detailAddress: '教工路世贸丽晶城',
+          isDefault: 0
+        },
+        {
+          accountId: 1292929035,
+          id: 5753789,
+          fullName: '程强',
+          mobileNumber: '13772271585',
+          address: '江西省高安市桥北乡',
+          detailAddress: '解放南路',
+          isDefault: 0
+        }
+      ]
+    }
+
+    computed = {
+    }
+
+    methods = {
+    }
+
+    events = {
+    }
+
+    onLoad() {
+    }
+  }
+</script>
+
+<style lang="less">
+  .address-management {
+    .address-list {
+      .address-item {
+        margin-bottom: 20rpx;
+        background-color: #FFFFFF;
+
+        .address-basic-info {
+          padding: 20rpx 30rpx;
+          border-bottom: 2rpx solid #f5f5f5;
+        }
+        .address-handle {
+          padding: 20rpx 30rpx;
+
+          > view:nth-child(2) {
+            > text:nth-child(2) {
+              margin-left: 20rpx;
+            }
+          }
+        }
+      }
+    }
+
+    .address-add {
+      position: fixed;
+      left: 0rpx;
+      bottom: 30rpx;
+      width: 100%;
+    }
+  }
+</style>

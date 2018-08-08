@@ -1,0 +1,79 @@
+<template>
+  <view class="address-add">
+    <!-- <text>新增地址</text> -->
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="flex-layout section">
+        <view class="section__title">收货人</view>
+        <input name="input" placeholder="please input here" />
+      </view>
+
+      <view class="section">
+        <view class="section__title">联系电话</view>
+        <input name="input" placeholder="please input here" />
+      </view>
+
+      <view class="section">
+        <view class="section__title">所在区域</view>
+        <input name="input" placeholder="please input here" />
+      </view>
+
+      <view class="btn-area">
+        <button formType="submit">Submit</button>
+        <button formType="reset">Reset</button>
+      </view>
+    </form>
+    <toast />
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+
+  export default class AddressAdd extends wepy.page {
+    config = {
+      navigationBarTitleText: '新增地址',
+      navigationBarTextStyle: 'black'
+    }
+    components = {
+      toast: Toast
+    }
+
+    data = {
+    }
+
+    computed = {
+    }
+
+    methods = {
+      // 提交表单
+      formSubmit: function(e) {
+        console.log('form发生了submit事件，携带数据为：', e.detail.value)
+      },
+
+      // 重置表单
+      formReset: function() {
+        console.log('form发生了reset事件')
+      }
+
+      // wx.getLocation({
+      //   type: 'wgs84',
+      //   success: function(res) {
+      //     var latitude = res.latitude
+      //     var longitude = res.longitude
+      //     var speed = res.speed
+      //     var accuracy = res.accuracy
+      //   }
+      // })
+    }
+
+    events = {
+    }
+
+    onLoad() {
+    }
+  }
+</script>
+
+<style lang="less">
+</style>

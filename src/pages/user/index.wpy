@@ -1,6 +1,126 @@
 <template>
   <view class="home">
-    <text>个人中心</text>
+    <!-- 头部 -->
+    <view class="home-header">
+      <!-- 个人信息 -->
+      <view class="flex-layout home-header-profile">
+        <view class="home-header-profile-avatar">
+          <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu181ki99vj30460460sz.jpg" class="slide-image" width="355" height="150"/>
+        </view>
+        <view class="home-header-profile-info">
+          <view>程强</view>
+          <!-- <view wx:if="{{havePhoneNum}}">18679501585</view> -->
+
+          <view wx:if="{{havePhoneNum}}">18679501585</view>
+          <view wx:else class="phone-empty">
+            绑定手机号
+          </view>
+        </view>
+      </view>
+
+      <!-- 基本属性 -->
+      <view class="flex-layout home-header-property">
+        <view class="home-header-property-item">
+          <view class="icon">
+            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu185eoj4oj301l01l742.jpg" class="slide-image" width="355" height="150"/>
+          </view>
+          <view class="title">
+            收藏
+          </view>
+        </view>
+
+        <view class="home-header-property-item">
+          <view class="icon">
+            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu185eis0zj301f01l741.jpg" class="slide-image" width="355" height="150"/>
+          </view>
+          <view class="title">
+            打卡
+          </view>
+        </view>
+
+        <view class="home-header-property-item">
+          <view class="icon">
+            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu185eizngj301f01ft8h.jpg" class="slide-image" width="355" height="150"/>
+
+            <view v-if="infoNum">{{ infoNum }}</view>
+          </view>
+          <view class="title">
+            消息
+          </view>
+        </view>
+      </view>
+
+      <!-- 购买/销售 -->
+      <view class="flex-layout home-header-function">
+        <view class="flex-layout home-header-function-buy">
+          <view class="icon">
+            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu18c5uubuj301u01u3ya.jpg" class="slide-image" width="355" height="150"/>
+          </view>
+          <view class="title">
+            购买
+          </view>
+        </view>
+        <view class="flex-layout home-header-function-sell">
+          <view class="icon">
+            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu18c5ukj0j302001x0sj.jpg" class="slide-image" width="355" height="150"/>
+          </view>
+          <view class="title">
+            出售
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 中部内容 -->
+    <view class="home-content">
+      <view class="list">
+        <view class="flex-layout itemn">
+          <view class="icon">
+            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu18c5uubuj301u01u3ya.jpg" class="slide-image" width="355" height="150"/>
+          </view>
+          <view class="title">
+            我的资金
+          </view>
+        </view>
+
+        <view class="flex-layout itemn">
+          <view class="icon">
+            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu18c5uubuj301u01u3ya.jpg" class="slide-image" width="355" height="150"/>
+          </view>
+          <view class="title">
+            我的护理
+          </view>
+        </view>
+
+        <view class="flex-layout itemn">
+          <view class="icon">
+            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu18c5uubuj301u01u3ya.jpg" class="slide-image" width="355" height="150"/>
+          </view>
+          <view class="title">
+            我的地址
+          </view>
+        </view>
+
+        <view class="flex-layout itemn">
+          <view class="icon">
+            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu18c5uubuj301u01u3ya.jpg" class="slide-image" width="355" height="150"/>
+          </view>
+          <view class="title">
+            常见问题
+          </view>
+        </view>
+
+        <view class="flex-layout itemn">
+          <view class="icon">
+            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu18c5uubuj301u01u3ya.jpg" class="slide-image" width="355" height="150"/>
+          </view>
+          <view class="title">
+            关于我们
+          </view>
+        </view>
+      </view>
+    </view>
+
     <toast />
   </view>
 </template>
@@ -9,9 +129,9 @@
   import wepy from 'wepy'
   import Toast from 'wepy-com-toast'
 
-  export default class Index extends wepy.page {
+  export default class Home extends wepy.page {
     config = {
-      navigationBarTitleText: 'PureSnake',
+      navigationBarTitleText: '我的',
       navigationBarTextStyle: 'black'
     }
     components = {
@@ -19,6 +139,8 @@
     }
 
     data = {
+      havePhoneNum: false,
+      infoNum: 10
     }
 
     computed = {
@@ -36,4 +158,124 @@
 </script>
 
 <style lang="less">
+  .home {
+
+    &-header {
+      background-color: #FFFFFF;
+      &-profile {
+        justify-content: flex-start;
+        padding: 30rpx;
+
+        &-avatar {
+          width: 100rpx;
+          height: 100rpx;
+          image {
+            width: 100%;
+            height: 100%;
+            vertical-align:top;
+          }
+        }
+        &-info {
+          margin-left: 30rpx;
+          .phone-empty {
+            height: 48rpx;
+            padding-left: 16rpx;
+            padding-right: 16rpx;
+            text-align: center;
+            line-height: 48rpx;
+            color: #FFFFFF;
+            background-color: #FE480D;
+          }
+        }
+      }
+
+      &-property {
+        padding-left: 60rpx;
+        padding-right: 60rpx;
+        border-bottom: 2rpx solid #f5f5f5;
+        &-item {
+          .icon {
+            position: relative;
+            width: 36rpx;
+            height: 36rpx;
+            image {
+              width: 100%;
+              height: 100%;
+              vertical-align:top;
+            }
+
+            > view {
+              position: absolute;
+              top: -12rpx;
+              right: -12rpx;
+              width: 28rpx;
+              text-align: center;
+              height: 28rpx;
+              line-height: 28rpx;
+              border-radius: 28rpx;
+              border: 2rpx solid #FFF;
+              background-color: #ff5400;
+              color: #FFFFFF;
+              font-size: 20rpx; /* no */
+            }
+          }
+          .title {
+          }
+        }
+      }
+
+      &-function {
+        height: 120rpx;
+        line-height: 120rpx;
+        > view {
+          flex: 1;
+          justify-content: center;
+          .icon {
+            width: 60rpx;
+            height: 60rpx;
+            image {
+              width: 100%;
+              height: 100%;
+              vertical-align:top;
+            }
+          }
+          .title {
+            margin-left: 10rpx;
+          }
+        }
+
+        &-sell {
+          border-left: 2rpx solid #f5f5f5;
+        }
+      }
+    }
+
+    &-content {
+      margin-top: 40rpx;
+
+      .list {
+        .itemn {
+          height: 120rpx;
+          line-height: 120rpx;
+          justify-content: flex-start;
+          background-color: #FFFFFF;
+          border-bottom: 2rpx solid #f5f5f5;
+          padding-left: 20rpx;
+
+          .icon {
+            width: 60rpx;
+            height: 60rpx;
+            image {
+              width: 100%;
+              height: 100%;
+              vertical-align:top;
+            }
+          }
+          .title {
+            margin-left: 20rpx;
+          }
+        }
+      }
+    }
+  }
 </style>

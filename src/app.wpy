@@ -12,7 +12,7 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
-      'components/SellerNotice',
+      'pages/user/AddressAdd',
       'pages/news/index',
       'pages/market/index',
       'pages/market/category',
@@ -20,7 +20,9 @@ export default class extends wepy.app {
       'pages/market/consign',
       'pages/clean/index',
       'pages/user/index',
-      // 'components/SellerNotice',
+      'pages/user/AddressManagement',
+      // 'pages/user/AddressAdd',
+      'components/SellerNotice'
     ],
     window: {
       backgroundTextStyle: 'light',
