@@ -52,22 +52,22 @@
 
       <!-- 购买/销售 -->
       <view class="flex-layout home-header-function">
-        <view class="flex-layout home-header-function-buy">
+        <navigator class="flex-layout home-header-function-buy" url="/pages/user/purchase">
           <view class="icon">
             <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu18c5uubuj301u01u3ya.jpg" class="slide-image" width="355" height="150"/>
           </view>
           <view class="title">
             购买
           </view>
-        </view>
-        <view class="flex-layout home-header-function-sell">
+        </navigator>
+        <navigator class="flex-layout home-header-function-sell" url="/pages/user/purchase">
           <view class="icon">
             <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu18c5ukj0j302001x0sj.jpg" class="slide-image" width="355" height="150"/>
           </view>
           <view class="title">
             出售
           </view>
-        </view>
+        </navigator>
       </view>
     </view>
 
@@ -232,7 +232,7 @@
       &-function {
         height: 120rpx;
         line-height: 120rpx;
-        > view {
+        > navigator {
           flex: 1;
           justify-content: center;
           .icon {

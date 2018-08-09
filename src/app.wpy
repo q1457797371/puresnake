@@ -23,6 +23,7 @@ export default class extends wepy.app {
       'pages/user/AddressAdd',
       'pages/user/collect',
       'pages/user/message',
+      'pages/user/purchase',
       'components/SellerNotice'
     ],
     window: {
