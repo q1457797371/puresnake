@@ -12,7 +12,6 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/user/AddressAdd',
       'pages/news/index',
       'pages/market/index',
       'pages/market/category',
@@ -21,7 +20,9 @@ export default class extends wepy.app {
       'pages/clean/index',
       'pages/user/index',
       'pages/user/AddressManagement',
-      // 'pages/user/AddressAdd',
+      'pages/user/AddressAdd',
+      'pages/user/collect',
+      'pages/user/message',
       'components/SellerNotice'
     ],
     window: {

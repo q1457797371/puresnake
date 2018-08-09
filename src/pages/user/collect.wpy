@@ -1,0 +1,188 @@
+<template>
+  <view class="collect">
+
+    <!-- tab 切换模块 -->
+    <view class="flex-layout swiper-tab">
+      <view wx:for="{{ tabList }}" wx:key="index" class="swiper-tab-list {{currentTab == index ? 'active' : ''}}" data-current="{{index}}" bindtap="swichNav">
+        {{item.name ? item.name : item}}
+      </view>
+    </view>
+
+    <scroll-view scroll-y="true" class="swiper-item-box" style="height:{{winHeight - 31}}px" bindscrolltolower="onReachBottom">
+      <!-- 我的收藏-商品 -->
+      <productlist :productList="productList" :indexa="index" wx:if="{{currentTab === 0}}"></productlist>
+
+      <!-- 我的收藏-资讯 -->
+      <view wx:if="{{currentTab === 1}}">
+        <view class="news_section_list">
+          <navigator class="news_section_item" open-type="navigate" wx:for="{{newsList}}" wx:key="item" url="/pages/home_detail?code={{item.code}}" >
+            <image class="news_section_img" src="{{item.img}}"></image>
+            <view class="news_section_title">{{item.title}}</view>
+            <view>
+              <view>
+                <view class="news_section_category">{{item.category}}</view>
+                <view class="news_section_time">{{item.time}}</view>
+              </view>
+              <view class="news_section_view">{{item.view}}</view>
+            </view>
+          </navigator>
+        </view>
+      </view>
+    </scroll-view>
+
+    <toast />
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+  import ProductList from '../../components/ProductList'
+
+  export default class Collect extends wepy.page {
+    config = {
+      navigationBarTitleText: '收藏',
+      navigationBarTextStyle: 'black'
+    }
+    components = {
+      productlist: ProductList,
+      toast: Toast
+    }
+
+    data = {
+      tabList: ['商品', '资讯'],
+      currentTab: 0,
+      productList: [
+        {
+          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝” 43码',
+          price: '89',
+          secondHandPrice: '8999',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054pdzej30c309x77f.jpg',
+          brandIcon: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054lgbej302f02r0sj.jpg',
+          isStock: true,
+          isReal: true
+        },
+        {
+          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝” 43码',
+          price: '69',
+          secondHandPrice: '699',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054pdzej30c309x77f.jpg',
+          brandIcon: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054lgbej302f02r0sj.jpg',
+          isStock: false,
+          isReal: false
+        },
+        {
+          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝” 43码',
+          price: '8999',
+          secondHandPrice: '12999',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054pdzej30c309x77f.jpg',
+          brandIcon: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054lgbej302f02r0sj.jpg',
+          isStock: false,
+          isReal: true
+        },
+        {
+          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝” 43码',
+          price: '88888',
+          secondHandPrice: '0',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054pdzej30c309x77f.jpg',
+          brandIcon: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054lgbej302f02r0sj.jpg',
+          isStock: true,
+          isReal: false
+        }
+      ],
+      newsList: [
+        {
+          img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+          title: 'Jordan Why Not Zer0.1 开箱：顶级的缓震、全…',
+          category: '时尚',
+          time: '7-19',
+          view: '199'
+        },
+        {
+          img: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+          title: 'Jordan Why Not Zer0.1 开箱：顶级的缓震、全…',
+          category: '潮流',
+          time: '8-19',
+          view: '299'
+        },
+        {
+          img: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+          title: 'Jordan Why Not Zer0.1 开箱：顶级的缓震、全…',
+          category: '潮流',
+          time: '8-19',
+          view: '299'
+        },
+        {
+          img: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+          title: 'Jordan Why Not Zer0.1 开箱：顶级的缓震、全…',
+          category: '潮流',
+          time: '8-19',
+          view: '299'
+        },
+        {
+          img: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+          title: 'Jordan Why Not Zer0.1 开箱：顶级的缓震、全…',
+          category: '潮流',
+          time: '8-19',
+          view: '299'
+        }
+      ]
+    }
+
+    computed = {
+    }
+
+    methods = {
+      /**
+       * 点击tab切换
+       */
+      swichNav(e) {
+        this.currentTab = e.target.dataset.current
+        console.log(this.currentTab)
+      }
+    }
+
+    events = {
+    }
+
+    onLoad() {
+    }
+  }
+</script>
+
+<style lang="less">
+  .collect {
+    .swiper-tab {
+      width: 100%;
+      border-bottom: 1rpx solid #eee;
+      text-align: center;
+      line-height: 80rpx;
+      background: #fff;
+    }
+
+    .swiper-tab-list {
+      flex: 1;
+      font-size: 30rpx;
+      color: #777777;
+      padding: 0 20rpx;
+      position: relative;
+    }
+
+    .active {
+      color: #eb6623;
+      border-bottom: 5rpx solid #eb6623;
+    }
+
+    .swiper-box {
+      display: block;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .swiper-item-box {
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+  }
+</style>

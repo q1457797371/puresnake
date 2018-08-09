@@ -1,0 +1,74 @@
+<template>
+  <view class="message">
+    <view class="message_list">
+      <view class="message_item" wx:for="{{messageList}}" wx:key="item">
+        <view>{{ item.content }}</view>
+        <view>{{ item.time }}</view>
+      </view>
+    </view>
+    <toast />
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+
+  export default class Message extends wepy.page {
+    config = {
+      navigationBarTitleText: '消息',
+      navigationBarTextStyle: 'black'
+    }
+    components = {
+      toast: Toast
+    }
+
+    data = {
+      messageList: [
+        {
+          content: '您下的订单已发货，请查收~',
+          time: '2018-08-08 12:12'
+        },
+        {
+          content: '您下的订单已发货，请查收~',
+          time: '2018-08-07 12:12'
+        },
+        {
+          content: '您下的订单已发货，请查收~',
+          time: '2018-08-06 12:12'
+        },
+        {
+          content: '您下的订单已发货，请查收~',
+          time: '2018-08-05 12:12'
+        }
+      ]
+    }
+
+    computed = {
+    }
+
+    methods = {
+    }
+
+    events = {
+    }
+
+    onLoad() {
+    }
+  }
+</script>
+
+<style lang="less">
+  .message {
+    padding: 30rpx;
+
+    .message_list {
+
+    }
+    .message_item {
+      padding: 20rpx;
+      margin-top: 20rpx;
+      background-color: #FFFFFF;
+    }
+  }
+</style>
