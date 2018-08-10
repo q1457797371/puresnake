@@ -74,14 +74,14 @@
     <!-- 中部内容 -->
     <view class="home-content">
       <view class="list">
-        <view class="flex-layout itemn">
+        <navigator class="flex-layout itemn" url="/pages/user/money">
           <view class="icon">
             <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu18c5uubuj301u01u3ya.jpg" class="slide-image" width="355" height="150"/>
           </view>
           <view class="title">
             我的资金
           </view>
-        </view>
+        </navigator>
 
         <view class="flex-layout itemn">
           <view class="icon">

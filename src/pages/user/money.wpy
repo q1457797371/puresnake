@@ -10,17 +10,17 @@
     </view>
 
     <view class="money-bind">
-      <view class="flex-layout money-bind-alipay">
+      <navigator class="flex-layout money-bind-alipay" url="/pages/user/bindAlipay">
         <view>支付宝账号</view>
         <view wx:if="{{ alipayAccount }}">{{ alipayAccount }}</view>
         <view wx:else>请绑定</view>
-      </view>
+      </navigator>
 
-      <view class="flex-layout money-bind-weipay">
+      <navigator class="flex-layout money-bind-weipay" url="/pages/user/bindAlipay">
         <view>微信账号</view>
         <view wx:if="{{ weiChatAccount }}">{{ weiChatAccount }}</view>
         <view wx:else>请绑定</view>
-      </view>
+      </navigator>
     </view>
 
     <toast />
@@ -93,7 +93,7 @@
     &-bind {
       margin-top: 30rpx;
 
-      > view {
+      > navigator {
         height: 100rpx;
         line-height: 100rpx;
         padding: 0 20rpx;

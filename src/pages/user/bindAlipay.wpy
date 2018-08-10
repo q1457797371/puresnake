@@ -3,9 +3,6 @@
 
     <view class="bind-alipay-title">支付宝收款账号</view>
 
-    <view>{{text}}</view>
-    <button bindtap="changeText"> Change normal data </button>
-
     <view class="bind-alipay-form">
       <form bindsubmit="formSubmit">
         <view class="block">
@@ -73,8 +70,7 @@
       canGetAuthCode: true,
       account: '',
       name: '',
-      code: '',
-      text: 'init data'
+      code: ''
     }
 
     computed = {
@@ -87,29 +83,10 @@
        * return { null }
        */
       bindKeyInput: function(e) {
-        console.log(e.target.dataset.name)
-        console.log(e.detail.value)
-        console.log(this.data.authCodeText)
-        console.log(this.authCodeText)
-        this.setData({
-          // [e.target.dataset.name]: e.detail.value
-          // account: e.detail.value
-          authCodeText: e.detail.value
-        })
-        console.log(this.data.account)
+        this[e.target.dataset.name] = e.detail.value
         console.log(this.account)
-        console.log(this.authCodeText)
-      },
-
-      changeText: function() {
-        // this.data.text = 'changed data'  // bad, it can not work
-        console.log(this.text)
-        console.log(typeof this.text)
-        console.log(this.setData)
-        this.setData({
-          text: 'changed data'
-        })
-        console.log(this.text)
+        console.log(this.name)
+        console.log(this.code)
       },
 
       /**
