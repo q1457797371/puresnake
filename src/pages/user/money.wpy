@@ -1,0 +1,105 @@
+<template>
+  <view class="money">
+
+    <view class="money-info">
+      <view class="money-total">¥6769.97</view>
+      <view class="flex-layout money-function">
+        <view class="money-withdraw">提现</view>
+        <view class="money-detail">明细</view>
+      </view>
+    </view>
+
+    <view class="money-bind">
+      <view class="flex-layout money-bind-alipay">
+        <view>支付宝账号</view>
+        <view wx:if="{{ alipayAccount }}">{{ alipayAccount }}</view>
+        <view wx:else>请绑定</view>
+      </view>
+
+      <view class="flex-layout money-bind-weipay">
+        <view>微信账号</view>
+        <view wx:if="{{ weiChatAccount }}">{{ weiChatAccount }}</view>
+        <view wx:else>请绑定</view>
+      </view>
+    </view>
+
+    <toast />
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+
+  export default class Money extends wepy.page {
+    config = {
+      navigationBarTitleText: '我的资金',
+      navigationBarTextStyle: 'black'
+    }
+    components = {
+      toast: Toast
+    }
+
+    data = {
+      alipayAccount: '',
+      weiChatAccount: '18679501585'
+    }
+
+    computed = {
+    }
+
+    methods = {
+    }
+
+    events = {
+    }
+
+    onLoad() {
+    }
+  }
+</script>
+
+<style lang="less">
+  .money {
+    background-color: #F5F5F5;
+ 
+    &-info {
+      background-color: #FFFFFF;
+
+      .money-total {
+        width: 100%;
+        height: 264rpx;
+        text-align: center;
+        line-height: 264rpx;
+        color: #FE480D;
+        font-size: 60rpx;
+        border-bottom: 2rpx solid #F5F5F5;
+      }
+
+      .money-function {
+        > view {
+          flex: 1;
+          height: 102rpx;
+          line-height: 102rpx;
+          text-align: center;
+        }
+      }
+
+      .money-detail {
+        border-left: 2rpx solid #f5f5f5;
+      }
+    }
+
+    &-bind {
+      margin-top: 30rpx;
+
+      > view {
+        height: 100rpx;
+        line-height: 100rpx;
+        padding: 0 20rpx;
+        border-bottom: 2rpx solid #f5f5f5;
+        background-color: #FFFFFF;
+      }
+    }
+  }
+</style>

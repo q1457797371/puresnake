@@ -38,7 +38,7 @@
           </view>
         </navigator>
 
-        <navigator class="home-header-property-item" url="/pages/user/collect">
+        <navigator class="home-header-property-item" url="/pages/user/message">
           <view class="icon">
             <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu185eizngj301f01ft8h.jpg" class="slide-image" width="355" height="150"/>
 
@@ -92,14 +92,14 @@
           </view>
         </view>
 
-        <view class="flex-layout itemn">
+        <navigator class="flex-layout itemn" url="/pages/user/AddressManagement">
           <view class="icon">
             <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu18c5uubuj301u01u3ya.jpg" class="slide-image" width="355" height="150"/>
           </view>
           <view class="title">
             我的地址
           </view>
-        </view>
+        </navigator>
 
         <view class="flex-layout itemn">
           <view class="icon">

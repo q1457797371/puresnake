@@ -1,0 +1,252 @@
+<template>
+  <view class="bind-alipay">
+
+    <view class="bind-alipay-title">支付宝收款账号</view>
+
+    <view>{{text}}</view>
+    <button bindtap="changeText"> Change normal data </button>
+
+    <view class="bind-alipay-form">
+      <form bindsubmit="formSubmit">
+        <view class="block">
+          <view class="list_item">
+            <view class="title">账号</view>
+            <view class="input">
+              <input
+                type="text"
+                bindinput="bindKeyInput"
+                data-name="account"
+                placeholder="支付宝账号" />
+            </view>
+          </view>
+
+          <view class="list_item">
+            <view class="title">姓名</view>
+            <view class="input">
+              <input
+                type="text"
+                bindinput="bindKeyInput"
+                data-name="name"
+                placeholder="请输入姓名" />
+            </view>
+          </view>
+
+          <view class="list_item">
+            <view class="title">验证码</view>
+            <view class="input">
+              <input
+                type="text"
+                bindinput="bindKeyInput"
+                data-name="code"
+                placeholder="请输入短信验证码" />
+            </view>
+            <view class="getCode" @tap="getCode">发送验证码</view>
+          </view>
+
+        </view>
+        <view class="btn_box">
+          <button class="button type_red" formType="submit">完成</button>
+        </view>
+      </form>
+    </view>
+
+    <toast />
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+  import tip from '@/utils/tip'
+
+  export default class BindAlipay extends wepy.page {
+    config = {
+      navigationBarTitleText: '绑定支付宝',
+      navigationBarTextStyle: 'black'
+    }
+    components = {
+      toast: Toast
+    }
+
+    data = {
+      authCodeText: '获取',
+      canGetAuthCode: true,
+      account: '',
+      name: '',
+      code: '',
+      text: 'init data'
+    }
+
+    computed = {
+    }
+
+    methods = {
+      /**
+       * @method 绑定输入值
+       * @param { null }
+       * return { null }
+       */
+      bindKeyInput: function(e) {
+        console.log(e.target.dataset.name)
+        console.log(e.detail.value)
+        console.log(this.data.authCodeText)
+        console.log(this.authCodeText)
+        this.setData({
+          // [e.target.dataset.name]: e.detail.value
+          // account: e.detail.value
+          authCodeText: e.detail.value
+        })
+        console.log(this.data.account)
+        console.log(this.account)
+        console.log(this.authCodeText)
+      },
+
+      changeText: function() {
+        // this.data.text = 'changed data'  // bad, it can not work
+        console.log(this.text)
+        console.log(typeof this.text)
+        console.log(this.setData)
+        this.setData({
+          text: 'changed data'
+        })
+        console.log(this.text)
+      },
+
+      /**
+       * @method 点击获取验证码
+       * @param { null }
+       * return { null }
+       */
+      getCode: function () {
+        console.log(this.account)
+        console.log(this.name)
+        console.log(this.code)
+        if (!this.account) {
+          Toast('请输入手机号码')
+          return false
+        }
+        if (!this.isPhoneNum(this.account)) {
+          Toast('请输入正确的手机号码')
+          return false
+        }
+        if (this.canGetAuthCode) {
+          this.canGetAuthCode = false
+
+          let i = 59
+          this.authCodeText = `${i}s`
+          i--
+          const counter = setInterval(() => {
+            this.authCodeText = `${i}s`
+            i--
+
+            if (i < -1) {
+              clearInterval(counter)
+
+              this.authCodeText = '重新获取'
+              this.canGetAuthCode = true
+            }
+          }, 1000)
+          // ajax 获取验证码写在这里
+          // let data = {
+          //   'mobile': this.mobilePhone
+          // }
+          // this.getMobileVerifyCode(data).then(res => {
+          //   if (res.data.status === 200) {
+
+          //     this.canGetAuthCode = false
+
+          //     let i = 59
+          //     this.authCodeText = `${i}s`
+          //     i--
+          //     const counter = setInterval(() => {
+          //         this.authCodeText = `${i}s`
+          //         i--
+
+          //         if (i < -1) {
+          //             clearInterval(counter)
+
+          //             this.authCodeText = '重新获取'
+          //             this.canGetAuthCode = true
+          //         }
+          //     }, 1000)
+          //   } else {
+          //     this.canGetAuthCode = true
+          //   }
+          // })
+        }
+      },
+
+      isPhoneNum: function (phone) {
+        var pattern = /^((1[3-9][0-9])+\d{8})$/
+        return pattern.test(phone)
+      },
+
+      formSubmit(e) {
+        let account = this.data.account
+        let name = this.data.name
+        let code = this.data.code
+
+        if (account === '') {
+          tip.toast('输入账户')
+          return false
+        }
+
+        if (name === '') {
+          tip.toast('输入收件人姓名')
+          return false
+        }
+
+        if (code === '') {
+          tip.toast('输入验证码')
+          return false
+        }
+
+        console.log('输入账户' + account + '输入收件人姓名' + name + '输入验证码' + code)
+        // this.addAddress(e.detail.value)
+      }
+    }
+
+    events = {
+    }
+
+    onLoad() {
+    }
+  }
+</script>
+
+<style lang="less">
+  .bind-alipay {
+    background-color: #f5f5f5;
+
+    &-title {
+      padding: 30rpx;
+    }
+
+    &-form {
+      .block {
+        background: #fff;
+      }
+
+      .list_item {
+        display: flex;
+        align-items: center;
+        border-top: 1px solid #efefef;
+        padding: 35rpx 20rpx;
+        .title {
+          margin-right: 20rpx;
+        }
+        .input {
+          flex: 1;
+          input {
+            color: #333;
+          }
+        }
+      }
+
+      .btn_box {
+        margin-top: 64rpx;
+        padding: 0 24rpx;
+      }
+    }
+  }
+</style>
