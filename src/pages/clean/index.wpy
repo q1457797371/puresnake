@@ -1,6 +1,35 @@
 <template>
-  <view class="home">
-    <text>清洗</text>
+  <view class="clean">
+
+    <view class="clean-header">
+      <view class="clean-header-icon">
+        <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1ftz5oe010hj303i029dfr.jpg" />
+      </view>
+      <view class="clean-header-name">
+        <text>Pure Snake</text>
+        <text>X</text>
+        <text>某某工厂</text>
+      </view>
+      <view class="clean-header-desc">我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介</view>
+      <view class="clean-header-lookup">了解更多</view>
+    </view>
+
+    <!-- 轮播条 -->
+    <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{imgUrls}}" wx:key="key">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" width="355" height="150"/>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <view class="clean-service">
+      <view class="flex-layout clean-service-title">
+        <view>选择护理服务</view>
+        <view>?</view>
+      </view>
+    </view>
+
     <toast />
   </view>
 </template>
@@ -9,9 +38,9 @@
   import wepy from 'wepy'
   import Toast from 'wepy-com-toast'
 
-  export default class Index extends wepy.page {
+  export default class Clean extends wepy.page {
     config = {
-      navigationBarTitleText: 'PureSnake',
+      navigationBarTitleText: '清理服务',
       navigationBarTextStyle: 'black'
     }
     components = {
@@ -19,6 +48,9 @@
     }
 
     data = {
+      imgUrls: [
+        'http://ww1.sinaimg.cn/large/006nn93Fgy1fu5u7e9hh6j30v90aftgk.jpg'
+      ]
     }
 
     computed = {
@@ -36,4 +68,57 @@
 </script>
 
 <style lang="less">
+  .clean {
+    background-color: #f5f5f5;
+
+    &-header {
+      padding: 70rpx;
+      text-align: center;
+      background-color: #FFFFFF;
+
+      &-icon {
+        width: 80rpx;
+        height: 80rpx;
+        margin-left: auto;
+        margin-right: auto;
+        image {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      &-name {
+        text:nth-child(1) {
+          color: #000000;
+          font-size: 42rpx;
+        }
+        text:nth-child(2) {
+          color: #FF6739;
+          font-size: 32rpx;
+          margin-left: 8rpx;
+          margin-right: 8rpx;
+        }
+        text:nth-child(3) {
+          color: #000000;
+          font-size: 32rpx;
+        }
+      }
+      &-desc {
+        color: #B7B7B7;
+        font-size: 24rpx;
+        margin-top: 20rpx;
+      }
+      &-lookup {
+        color: #FF6739;
+        font-size: 24rpx;
+      }
+    }
+
+    .swiper {
+      height: 250rpx;
+      .slide-image {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
 </style>

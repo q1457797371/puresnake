@@ -12,13 +12,13 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
-      // 'pages/user/bindAlipay',
+      'pages/clean/index',
       'pages/news/index',
       'pages/market/index',
       'pages/market/category',
       'pages/market/list',
       'pages/market/consign',
-      'pages/clean/index',
+      // 'pages/clean/index',
       'pages/user/index',
       'pages/user/AddressManagement',
       'pages/user/AddressAdd',
