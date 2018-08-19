@@ -1,5 +1,4 @@
 <style lang="less">
-  @import "./weui.wxss";
   @import "./styles/base";
   @import "./styles/icon";
   @import "./styles/style";
@@ -12,13 +11,12 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/clean/index',
       'pages/news/index',
       'pages/market/index',
       'pages/market/category',
       'pages/market/list',
       'pages/market/consign',
-      // 'pages/clean/index',
+      'pages/clean/index',
       'pages/user/index',
       'pages/user/AddressManagement',
       'pages/user/AddressAdd',
@@ -27,7 +25,8 @@ export default class extends wepy.app {
       'pages/user/purchase',
       'pages/user/money',
       'pages/user/bindAlipay',
-      'components/SellerNotice'
+      'components/SellerNotice',
+      'pages/search/search'
     ],
     window: {
       backgroundTextStyle: 'light',

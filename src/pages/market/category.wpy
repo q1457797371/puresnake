@@ -1,339 +1,216 @@
 <template>
-  <view class="category">
-    <!-- 搜索条 -->
-    <view class="category-header">
-      <navigator class="search_content" open-type="navigate" url="/pages/search">
-        <view class="search_input">
-          <input placeholder="搜索商品"/>
+  <view class="mall">
+    <view class="flex-layout mall-header">
+      <view class="mall-header-container">
+        <view class="list" style="width: {{ view.width }}">
+            <view wx:for="{{newsSectionTitle}}" wx:key="key" data-current="{{index}}" class="{{currentTab === index ? 'active' : ''}}" bindtap="selectMenu">{{ item }}</view>
         </view>
+      </view>
+
+      <navigator class="mall-header-search" open-type="navigate" url="/pages/search/search">
+        <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fuf369chkkj302x02xt8j.jpg" class="nav_icon"></image>
       </navigator>
     </view>
 
-    <view class="category-content" style="height:{{windowHeight-50}}px">
-      <scroll-view class="classify_catetory" scroll-y scroll-with-animation="true" style="height:{{windowHeight-50}}px">
-        <view class="name {{item.active? 'active':''}}" wx:for="{{rootcateList}}" wx:key="item" @tap="changeCate" data-code="{{item.code}}">
-          {{item.name}}
+    <view class="mall-bd">
+      <view class="mall-bd-container">
+        <view class="list">
+            <view class="item" wx:for="{{mallProductList}}" wx:key="key" bindtap="selectMenu">
+              <view>
+                <image src="{{ item.img }}" class="nav_icon"></image>
+              </view>
+              <view class="flex-layout">
+                <view>{{ item.name }}</view>
+                <view>{{ item.items }}件装备</view>
+              </view>
+            </view>
+          </block>
         </view>
-      </scroll-view>
-      <scroll-view class="classify_detail" scroll-y scroll-with-animation="true" style="height:{{windowHeight-50}}px">
-          <view class="children">
-            <navigator hover-class="none" class="children_item" wx:for="{{childcateList}}" wx:for-item="item" wx:key="index" url="/pages/search?cateCode={{item.secondCategory.code}}&title={{item.secondCategory.name}}">
-              <image class="child_image" src="{{item.secondCategory.thumLogo}}"></image>
-              <view class="child_name">{{item.secondCategory.name}}</view>
-            </navigator>
-          </view>
-      </scroll-view>
+      </view>
     </view>
+    <toast />
   </view>
 </template>
 
 <script>
-// import wepy from 'wepy'
-// import api from '@/api/api'
-// import {
-//   SYSTEM_INFO,
-//   SEL_CLASS_CODE
-// } from '@/utils/constant'
-
-// import tip from '@/utils/tip'
-
   import wepy from 'wepy'
   import Toast from 'wepy-com-toast'
 
-  export default class category extends wepy.page {
+  export default class Clean extends wepy.page {
     config = {
-      navigationBarTitleText: '分类',
-      navigationBarTextStyle: 'black'
+      navigationBarTitleText: '商城',
+      navigationBarTextStyle: 'white',
+      navigationBarBackgroundColor: '#000000'
     }
     components = {
       toast: Toast
     }
 
     data = {
-      rootcateList: [{
-        code: '004',
-        name: '上衣',
-        logo: 'http://sujiefs.com/upload/images/20170819/201708191958392454606.jpg',
-        id: '402880f75d78aa88015d7905a5500003'
-      }, {
-        code: '008',
-        name: '裤子',
-        logo: '',
-        id: '2c9257a15de92f53015dea1c43280037'
-      }, {
-        code: '009',
-        name: '裙子',
-        logo: 'http://sujiefs.com/upload/images/20170816/201708161632508062033.jpg',
-        id: '2c9257a15de92f53015dea1e76d3003e'
-      }],
-      childcateList: [{
-        secondCategory: {
-          code: '004009',
-          name: '风衣',
-          thumLogo: 'http://sujiefs.com/upload/images/20171006/201710061145211681060_thumbnail.jpg'
-        },
-        thirdCategoryList: []
-      }, {
-        secondCategory: {
-          code: '004003',
-          name: 'T恤',
-          thumLogo: 'http://sujiefs.com/upload/images/20170816/201708161803198792334_thumbnail.jpg'
-        },
-        thirdCategoryList: []
-      }, {
-        secondCategory: {
-          code: '004007',
-          name: '衬衫',
-          thumLogo: 'http://sujiefs.com/upload/images/20170816/201708161804083693788_thumbnail.jpg'
-        },
-        thirdCategoryList: []
-      }, {
-        secondCategory: {
-          code: '004010',
-          name: '针织衫',
-          thumLogo: 'http://sujiefs.com/upload/images/20170819/201708192132126698260_thumbnail.jpg'
-        },
-        thirdCategoryList: []
-      }, {
-        secondCategory: {
-          code: '004005',
-          name: '时尚套装',
-          thumLogo: 'http://sujiefs.com/upload/images/20170816/201708161803492303325_thumbnail.jpg'
-        },
-        thirdCategoryList: []
-      }, {
-        secondCategory: {
-          code: '004013',
-          name: '卫衣/绒衫',
-          thumLogo: 'http://sujiefs.com/upload/images/20171021/201710211711048036279_thumbnail.jpg'
-        },
-        thirdCategoryList: []
-      }, {
-        secondCategory: {
-          code: '004011',
-          name: '外套/毛呢外套',
-          thumLogo: 'http://sujiefs.com/upload/images/20170821/201708211039363440762_thumbnail.jpg'
-        },
-        thirdCategoryList: []
-      }, {
-        secondCategory: {
-          code: '004006',
-          name: '背心吊带',
-          thumLogo: 'http://sujiefs.com/upload/images/20170816/201708161803592817820_thumbnail.jpg'
-        },
-        thirdCategoryList: []
-      }]
+      imgUrls: [
+        'http://ww1.sinaimg.cn/large/006nn93Fgy1fu5u7e9hh6j30v90aftgk.jpg'
+      ],
+      newsSectionTitle: ['全部', '篮球', '跑鞋', '休闲', '潮服', '手办', '配件', '手表', '其他'],
+      view: {
+        width: ''
+      },
+      currentTab: 0,
+      mallProductList: [
+        {
+          name: 'ALL',
+          items: '1353',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fuf36szjuuj31qi0p07wi.jpg'
+        }, {
+          name: '系列',
+          items: '456',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fuf36rsw5uj31qc0p0b2a.jpg'
+        }, {
+          name: '必买',
+          items: '456',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fuf36rsw5uj31qc0p0b2a.jpg'
+        }, {
+          name: 'Nike',
+          items: '456',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fuf36o5lp3j31qf0tohdu.jpg'
+        }, {
+          name: 'Adidas',
+          items: '456',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fuf36rsw5uj31qc0p0b2a.jpg'
+        }, {
+          name: 'Air Jordan',
+          items: '1353',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fuf36szjuuj31qi0p07wi.jpg'
+        }, {
+          name: 'Asics',
+          items: '1353',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fuf36o5lp3j31qf0tohdu.jpg'
+        }, {
+          name: 'Puma',
+          items: '1353',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fuf36szjuuj31qi0p07wi.jpg'
+        }, {
+          name: 'Under Armour',
+          items: '1353',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fuf36rsw5uj31qc0p0b2a.jpg'
+        }, {
+          name: '李宁',
+          items: '1353',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fuf36rsw5uj31qc0p0b2a.jpg'
+        }
+      ]
     }
+
     computed = {
     }
 
     methods = {
+      /**
+        * @method selectMenu 选择菜单
+        * @param  null
+      */
+      selectMenu(e) {
+        this.currentTab = e.target.dataset.current
+      }
     }
 
     events = {
     }
 
     onLoad() {
+      // 设置顶部导航栏
+      this.view.width = `${this.newsSectionTitle.length * 120}rpx`
     }
   }
-
-// export default class Classify extends wepy.page {
-//   config = {
-//     navigationBarTitleText: '分类'
-//   }
-//   components = {
-
-//   }
-
-//   data = {
-//     scrollTop: 100,
-//     windowHeight: 0,
-//     list: {},
-//     // 一级分类数据
-//     rootcateList: {},
-//     // 二级三级分类数据
-//     childcateList: {}
-//   }
-
-//   async getChildCate(rootCateCode) {
-//     const json = await api.childGoodsCatetoryList({
-//       query: {
-//         rootCategoryCode: rootCateCode
-//       }
-//     })
-//     if (json.data.code === 0) {
-//       this.childcateList = json.data.list
-//     } else {
-//       tip.error(json.data.msg)
-//     }
-//     this.$apply()
-//   }
-
-//   async getRootCateTopLevel() {
-//     const json = await api.rootCtegoryList({
-//       query: {}
-//     })
-//     if (json.data.code === 0) {
-//       this.rootcateList = json.data.list
-//       if (this.rootcateList.length > 0) {
-//         let selCode = wx.getStorageSync(SEL_CLASS_CODE)
-//         var selRottCateCode = this.rootcateList[0].code
-//         if (selCode.length === 0) {
-//           this.rootcateList[0].active = true
-//         } else {
-//           for (var i = 0; i < this.rootcateList.length; i++) {
-//             if (selCode === this.rootcateList[i].code) {
-//               selRottCateCode = this.rootcateList[i].code
-//               this.rootcateList[i].active = true
-//             }
-//           }
-//         }
-
-//         this.getChildCate(selRottCateCode)
-//       }
-//     } else {
-//       tip.error(json.data.msg)
-//     }
-//     this.$apply()
-//   }
-
-//   onLoad() {
-//     let systemInfo = wx.getStorageSync(SYSTEM_INFO)
-//     this.windowHeight = systemInfo.windowHeight
-//     this.$apply()
-//   }
-
-//   onShow() {
-//     this.getRootCateTopLevel()
-//   }
-
-//   computed = {
-
-//   }
-//   methods = {
-//     changeCate(e) {
-//       let code = e.currentTarget.dataset.code
-//       this.getChildCate(code)
-//       wepy.setStorageSync(SEL_CLASS_CODE, code)
-//       // 设置一级分类的选中状态
-//       for (var i = 0; i < this.rootcateList.length; i++) {
-//         var rootCate = this.rootcateList[i]
-//         rootCate.active = false
-//         if (rootCate.code === code) {
-//           rootCate.active = true
-//         }
-//       }
-//     },
-//     onShareAppMessage: function (res) {
-//       if (res.from === 'button') {
-//         //  来自页面内转发按钮
-//         console.log(res.target)
-//       }
-//       return {
-//         title: this.detail.name,
-//         path: '/pages/classify',
-//         success: function(res) {
-//           // 转发成功
-//         },
-//         fail: function(res) {
-//           // 转发失败
-//         }
-//       }
-//     }
-//   }
-//   events = {
-
-//   }
-// }
 </script>
 
 <style lang="less">
+  .mall {
+    background-color: #f5f5f5;
 
-  .category {
-    background-color: #F4F4F4;
-
-    .flex-layout {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-    }
-
-    &-header {
+    .mall-header {
       width: 100%;
-      height: 82rpx;
-      line-height: 82rpx;
-      padding: 12rpx;
+      height: 102rpx;
+      line-height: 102rpx;
+      background-color: #FFF;
 
-      .search_content {
+      &-container {
         flex: 1;
-        height: 58rpx;
-        line-height: 58rpx;
-        margin-left: 16rpx;
-        border-radius: 6rpx;
-        background-color: #F4F4F4;
-
-        .search_input {
-          font-size: 24rpx;
+        overflow: scroll;
+        .list {
+          view {
+            font-size: 12px;
+            float: left;
+            padding-left: 36rpx;
+            padding-right: 36rpx;
+            color: #D6D6D6;
+          }
+          .active {
+            color: #171616;
+          }
         }
+      }
+
+      &-search {
+        width: 105rpx;
+        height: 100%;
+        text-align: center;
+        vertical-align: middle;
+        image {
+          width: 35rpx;
+          height: 35rpx;
+        }
+      }
+
+      &-container::-webkit-scrollbar {
+        display: none;
       }
     }
 
-    &-content {
-      display: flex;
-      position: relative;
-      .classify_catetory {
-        width: 200rpx;
-        position: relative;
-        z-index: 1;
-        .name {
-          text-align: center;
-          height: 100rpx;
-          line-height: 100rpx;
-          font-size: 28rpx;
-          color: #666;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-        }
-        .active {
-          border-left: 6rpx solid #ff6a3c;
-          background: #fff;
-          color: #ff6a3c;
-        }
-      }
-      .classify_detail {
-        position: relative;
-        z-index: 999;
-        // margin-left: -15rpx;
-        background: #fff;
-        padding: 15px 10px 10px 30px;
-        .classify_item {}
-        .title {
-          font-size: 30rpx;
-          color: #333;
-          margin-left: 25rpx;
-        }
-        .children {
-          display: flex;
-          flex-wrap: wrap;
-          margin: 20rpx 0rpx;
-        }
-        .child_image {
-          width: 60px;
-          height: 60px;
-        }
-        .child_name {
-          font-size: 26rpx;
-          color: #666;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          width: 170rpx;
-        }
-        .children_item {
-          height: 200rpx;
-          width: 170rpx;
-          text-align: center;
+    .mall-bd {
+      &-container {
+        .list {
+          .item {
+            position: relative;
+            width: 100%;
+            height: 350rpx;
+            > view:nth-child(1) {
+              width: 100%;
+              height: 100%;
+              image {
+                width: 100%;
+                height: 100%;
+              }
+            }
+            > view:nth-child(2) {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              flex-direction: column;
+              justify-content: center;
+              width: 100%;
+              height: 100%;
+              z-index: 5;
+
+              > view:nth-child(1) {
+                color: #FFF;
+                font-size: 20px;
+              }
+              > view:nth-child(2) {
+                color: #FFF;
+                font-size: 12px;
+              }
+            }
+          }
+          .item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+          }
         }
       }
     }
