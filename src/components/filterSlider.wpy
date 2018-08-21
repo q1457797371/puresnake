@@ -1,29 +1,35 @@
 <template>
   <view wx:if="{{show}}">
     <view class="filter-slider">
-      <!--<view class="block">
-                      <view class="title">品类</view>
-                      <view class="item_box">
-                        <view class="item active">女款休闲裤(12)<i class="iconfont icon-bottom-check"></i></view>
-                        <view class="item">女款休闲裤(12)</view>
-                        <view class="item">女款休闲裤(12)</view>
-                        <view class="item">女款休闲裤(12)</view>
-                        <view class="item">女款休闲裤(12)</view>
-                        <view class="item">女款休闲裤(12)</view>
-                        <view class="item">女款休闲裤(12)</view>
-                      </view>
-                    </view>-->
+
+      <view class="block">
+        <view class="title">排序</view>
+        <view class="item_box">
+          <view class="item" data-sort="1" @tap.stop="selSKU">综合排序</view>
+          <view class="item" data-sort="2" @tap.stop="selSKU">最新发布</view>
+          <view class="item" data-sort="3" @tap.stop="selSKU">价格最低</view>
+          <view class="item" data-sort="4" @tap.stop="selSKU">价格最高</view>
+        </view>
+      </view>
+
+      <view class="block">
+        <view class="title">来源</view>
+        <view class="item_box">
+          <view class="item" data-sort="1" @tap.stop="selSKU">全部</view>
+          <view class="item" data-sort="2" @tap.stop="selSKU">平台现货</view>
+          <view class="item" data-sort="3" @tap.stop="selSKU">卖家挂售</view>
+        </view>
+      </view>
+
       <view class="block">
         <view class="title">尺码</view>
         <view class="item_box">
-          <view class="item" data-sku="XS" @tap.stop="selSKU">XS</view>
-          <view class="item" data-sku="S" @tap.stop="selSKU">S</view>
-          <view class="item" data-sku="M" @tap.stop="selSKU">M</view>
-          <view class="item" data-sku="L" @tap.stop="selSKU">L</view>
-          <view class="item" data-sku="XL" @tap.stop="selSKU">XL</view>
-          <view class="item" data-sku="XXL" @tap.stop="selSKU">XXL</view>
+          <block wx:for="{{[35, 35.5, 36, 36.5, 37, 37.5, 38, 38.5, 39, 39.5, 40, 40.5, 41, 41.5, 42, 42.5, 43, 43.5, 44, 44.5, 45, 45.5, 46, 46.5, 47, '全部']}}">
+            <view class="item" data-sort="{{ item }}" @tap.stop="selSKU">{{item}}</view>
+          </block>
         </view>
       </view>
+
       <view class="btn_group">
         <view class="btn_left_box">
           <view class="button type_empity">重置</view>
@@ -74,48 +80,49 @@
     top: 0;
     right: 0;
     height: 100%;
-    width: 600rpx;
+    width: 675rpx;
     z-index: 106003;
-    background: #ffffff;
+    background: #28313A;
+    overflow: scroll;
   }
   .block {
-    font-weight: 600;
-    color: #000;
-    margin-top: 30rpx;
-    padding-left: 30rpx;
+    padding: 45rpx 40rpx;
+    .title {
+      color: #FFFFFF;
+      font-size: 14px;
+    }
+
+    .item_box {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      .item {
+        position: relative;
+        margin-top: 20rpx;
+        margin-right: 20rpx;
+        border-radius: 5rpx;
+        width: 120rpx;
+        height: 50rpx;
+        text-align: center;
+        line-height: 50rpx;
+        font-size: 12px;
+        color: #FFFFFF;
+        background-color: #9EB0BE;
+      }
+      .active {
+        border: 1px solid #f23737;
+        color: #f23737;
+      }
+      .icon-bottom-check {
+        position: absolute;
+        bottom: -4rpx;
+        right: 0;
+        color: #f23737;
+        font-size: 24rpx;
+      }
+    }
   }
-  .item_box {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-left: -30rpx;
-    margin-top: 30rpx;
-    padding-bottom: 30rpx;
-    border-bottom: 1px solid #efefef;
-    .item {
-      position: relative;
-      margin-left: 30rpx;
-      margin-top: 20rpx;
-      text-align: center;
-      border: 1px solid #c6c6c6;
-      border-radius: 5rpx;
-      width: 205rpx;
-      padding: 16rpx 0rpx;
-      font-size: 24rpx;
-      color: #2c2c2c;
-    }
-    .active {
-      border: 1px solid #f23737;
-      color: #f23737;
-    }
-    .icon-bottom-check {
-      position: absolute;
-      bottom: -4rpx;
-      right: 0;
-      color: #f23737;
-      font-size: 24rpx;
-    }
-  }
+
   .btn_group {
     display: flex;
     align-items: center;
