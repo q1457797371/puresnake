@@ -241,6 +241,7 @@
           }
           .current {
             color: #171313;
+            font-size: 30rpx;
             font-weight: 600;
           }
         }

@@ -15,7 +15,7 @@
     <view class="mall-bd">
       <view class="mall-bd-container">
         <view class="list">
-            <view class="item" wx:for="{{mallProductList}}" wx:key="key" bindtap="selectMenu">
+            <view class="item" wx:for="{{mallProductList}}" wx:key="key" @tap="goPage({{item}})">
               <view>
                 <image src="{{ item.img }}" class="nav_icon"></image>
               </view>
@@ -110,6 +110,16 @@
       */
       selectMenu(e) {
         this.currentTab = e.target.dataset.current
+      },
+
+      /**
+        * @method goPage 跳转页面
+        * @param  null
+      */
+      goPage: function (item) {
+        this.$navigate({
+          url: `/pages/market/brand?id=${item.name}`
+        })
       }
     }
 

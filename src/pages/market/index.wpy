@@ -1,16 +1,5 @@
 <template>
   <view class="market">
-
-    <!-- 搜索条 -->
-    <view class="flex-layout market-header">
-      <navigator class="category" open-type="navigate" url="/pages/market/category">
-        <image src="../../images/market/category@3x.png"></image>
-      </navigator>
-      <navigator class="search_content" open-type="navigate" url="/pages/search">
-        <view class="search_input">搜索商品</view>
-      </navigator>
-    </view>
-
     <!-- 轮播条 -->
     <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{imgUrls}}" wx:key="key">
@@ -20,62 +9,41 @@
       </block>
     </swiper>
 
+    <!-- 1. 所有品牌 -->
+    <navigator class="market-all-brand" open-type="navigate" url="/pages/market/category">
+      <view>
+        <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fupmysj1lvj31qi0kukc6.jpg"></image>
+      </view>
+      <view class="flex-layout">
+        <view>ALL BRAND</view>
+        <view>所有品牌</view>
+      </view>
+    </navigator>
+
     <!-- 售卖模式 寄售和挂卖 -->
-    <view class="flex-layout operation-mode">
+    <view class="operation-mode">
       <navigator class="flex-layout operation-mode-b2c" url="/pages/market/consign">
         <view class="info">
-          <view class="">我要寄售</view>
-          <view class="">平台担保 成色更佳</view>
+          <view class="">1</view>
+          <view class="">Consignment</view>
+          <view class="">寄售</view>
         </view>
         <view class="icon">
-          <image src="../../images/market/b2c@3x.png"></image>
+          <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fupnbxtwtlj315o0ku790.jpg"></image>
         </view>
       </navigator>
 
       <navigator class="flex-layout operation-mode-c2c" url="/pages/market/consign">
         <view class="info">
-          <view class="">我要挂卖</view>
-          <view class="">信息上传 即卖即寄</view>
+          <view class="">2</view>
+          <view class="">Hang up</view>
+          <view class="">挂卖</view>
         </view>
         <view class="icon">
-          <image src="../../images/market/c2c.png"></image>
+          <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fupnbxxbgpj315o0kudqn.jpg"></image>
         </view>
       </navigator>
     </view>
-
-    <!-- 鞋子分类 -->
-    <view class="shoes-classification">
-      <view class="children">
-        <!-- <navigator class="children_item" wx:for="{{childcateList}}" wx:for-item="item" wx:key="index" url="/pages/search?cateCode={{item.secondCategory.code}}&title={{item.secondCategory.name}}"> -->
-        <view class="children_item" wx:for="{{childcateList}}" wx:for-item="item" wx:key="index">
-          <navigator wx:if="{{index < 7}}" url="/pages/market/list?type=2&id=2">
-            <image class="child_image" src="{{item.secondCategory.thumLogo}}"></image>
-            <view class="child_name">{{item.secondCategory.name}}</view>
-          </navigator>
-
-          <navigator wx:if="{{index >= 7}}" url="/pages/market/list?type=1&id=2">
-            <image class="child_image" src="../../images/market/category@3x.png"></image>
-            <view class="child_name">全部</view>
-          </navigator>
-        </view>
-      </view>
-    </view>
-
-    <!-- 推荐出售 -->
-    <!-- <view class="recommended-product">
-      <view class="recommended-product-title">推荐出售</view>
-      <view class="recommended-product-content">
-        <view class="discover_list">
-            <navigator class="item" open-type="navigate" wx:for="{{list}}" wx:key="item" url="/pages/home_detail?code={{item.code}}" >
-                <image class="discover_img" src="{{item.logo}}"></image>
-                <view class="info" wx:for="{{item.attrs}}" wx:key="item">
-                  <view>{{item.attrName.attrName}}</view>
-                  <view wx:for="{{item.attrValList}}" wx:key="item">{{item.attrVal}}</view>
-                </view>
-            </navigator>
-        </view>
-      </view>
-    </view> -->
 
     <toast />
   </view>
@@ -88,7 +56,8 @@
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '二手市场',
-      navigationBarTextStyle: 'black'
+      navigationBarTextStyle: 'white',
+      navigationBarBackgroundColor: '#000000'
     }
     components = {
       toast: Toast
@@ -96,6 +65,7 @@
 
     data = {
       imgUrls: [
+        'http://ww1.sinaimg.cn/large/006nn93Fgy1fupjmgx2udj30ku0dwtsy.jpg',
         'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
         'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
         'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
@@ -105,152 +75,7 @@
       interval: 5000,
       duration: 1000,
       indicatorActiveColor: '#fff',
-      currentIndex: 0,
-      childcateList: [{
-        secondCategory: {
-          code: '004009',
-          name: '风衣',
-          thumLogo: 'http://sujiefs.com/upload/images/20171006/201710061145211681060_thumbnail.jpg'
-        },
-        thirdCategoryList: []
-      }, {
-        secondCategory: {
-          code: '004003',
-          name: 'T恤',
-          thumLogo: 'http://sujiefs.com/upload/images/20170816/201708161803198792334_thumbnail.jpg'
-        },
-        thirdCategoryList: []
-      }, {
-        secondCategory: {
-          code: '004007',
-          name: '衬衫',
-          thumLogo: 'http://sujiefs.com/upload/images/20170816/201708161804083693788_thumbnail.jpg'
-        },
-        thirdCategoryList: []
-      }, {
-        secondCategory: {
-          code: '004010',
-          name: '针织衫',
-          thumLogo: 'http://sujiefs.com/upload/images/20170819/201708192132126698260_thumbnail.jpg'
-        },
-        thirdCategoryList: []
-      }, {
-        secondCategory: {
-          code: '004005',
-          name: '时尚套装',
-          thumLogo: 'http://sujiefs.com/upload/images/20170816/201708161803492303325_thumbnail.jpg'
-        },
-        thirdCategoryList: []
-      }, {
-        secondCategory: {
-          code: '004013',
-          name: '卫衣/绒衫',
-          thumLogo: 'http://sujiefs.com/upload/images/20171021/201710211711048036279_thumbnail.jpg'
-        },
-        thirdCategoryList: []
-      }, {
-        secondCategory: {
-          code: '004011',
-          name: '外套/毛呢外套',
-          thumLogo: 'http://sujiefs.com/upload/images/20170821/201708211039363440762_thumbnail.jpg'
-        },
-        thirdCategoryList: []
-      }, {
-        secondCategory: {
-          code: '004006',
-          name: '背心吊带',
-          thumLogo: 'http://sujiefs.com/upload/images/20170816/201708161803592817820_thumbnail.jpg'
-        },
-        thirdCategoryList: []
-      }],
-      list: [{
-        code: '022',
-        logo: 'http://sujiefs.com/upload/images/20180322/201803221134300716543.jpg',
-        id: '2c9257a16126d14701612b52808100d6',
-        attrs: [{
-          attrValList: [{
-            attrName: '品牌',
-            attrNameId: 213,
-            attrVal: '素洁',
-            id: 556
-          }],
-          attrName: {
-            attrName: '品牌',
-            categoryCode: '022',
-            id: 213
-          }
-        }, {
-          attrValList: [{
-            attrName: '年份季节',
-            attrNameId: 214,
-            attrVal: '2018春季新款',
-            id: 557
-          }],
-          attrName: {
-            attrName: '年份季节',
-            categoryCode: '022',
-            id: 214
-          }
-        }]
-      }, {
-        code: '021',
-        logo: 'http://sujiefs.com/upload/images/20180319/201803191401583397599.jpg',
-        id: '2c9257a160e0cb1c0160ee3562e0024e',
-        attr: [{
-          attrValList: [{
-            attrName: '品牌',
-            attrNameId: 211,
-            attrVal: '素洁',
-            id: 554
-          }],
-          attrName: {
-            attrName: '品牌',
-            categoryCode: '021',
-            id: 211
-          }
-        }, {
-          attrValList: [{
-            attrName: '年份季节',
-            attrNameId: 212,
-            attrVal: '2018全新升级版',
-            id: 555
-          }],
-          attrName: {
-            attrName: '年份季节',
-            categoryCode: '021',
-            id: 212
-          }
-        }]
-      }, {
-        code: '020',
-        logo: 'http://sujiefs.com/upload/images/20180308/201803081427506631167.jpg',
-        id: '2c9257a15f37e4320160014d4dfc1650',
-        attr: [{
-          attrValList: [{
-            attrName: '品牌',
-            attrNameId: 208,
-            attrVal: '素洁',
-            id: 551
-          }],
-          attrName: {
-            attrName: '品牌',
-            categoryCode: '020',
-            id: 208
-          }
-        }, {
-          attrValList: [{
-            attrName: '年份季节',
-            attrNameId: 209,
-            attrVal: '2017冬季',
-            id: 552
-          }],
-          attrName: {
-            attrName: '年份季节',
-            categoryCode: '020',
-            id: 209
-          }
-        }]
-      }]
+      currentIndex: 0
     }
 
     computed = {
@@ -269,102 +94,99 @@
 
 <style lang="less" scoped>
   .market {
-    background-color: #F4F4F4;
-
-    .flex-layout {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-    }
-
-    &-header {
-      justify-content: flex-start;
-      width: 100%;
-      height: 82rpx;
-      line-height: 82rpx;
-      padding: 12rpx;
-
-      .category {
-        width: 60rpx;
-        height: 60rpx;
-        image {
-          width: 100%;
-          height: 100%;
-        }
-      }
-      .search_content {
-        flex: 1;
-        height: 58rpx;
-        line-height: 58rpx;
-        margin-left: 16rpx;
-        border-radius: 6rpx;
-        background-color: #F4F4F4;
-
-        .search_input {
-          font-size: 24rpx;
-        }
-      }
-    }
 
     .swiper {
-      height: 348rpx;
+      height: 500rpx;
       .slide-image {
         width: 100%;
         height: 100%;
       }
     }
 
+    &-all-brand {
+      position: relative;
+      width: 100%;
+      height: 250rpx;
+
+      > view:nth-child(1) {
+        width: 100%;
+        height: 100%;
+        image {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      > view:nth-child(2) {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
+
+        > view:nth-child(1) {
+          color: #FFF;
+          font-size: 47rpx;
+        }
+        > view:nth-child(2) {
+          color: #FFF;
+          font-size: 42rpx;
+        }
+      }
+    }
+    &-all-brand::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #393737;
+      opacity: 0.78;
+    }
+
     .operation-mode {
-      height: 162rpx;
-      background-color: #ffffff;
       > navigator {
+        height: 250rpx;
+
         .info {
-          color: #353535;
-          > view:nth-child(1) {
-            font-size: 36rpx;
+          width: 250rpx;
+          height: 100%;
+          padding-left: 30rpx;
+          > view {
+            color: #FFF;
           }
-          > view:nth-child(2) {
-            font-size: 20rpx;
+
+          > view:nth-child(1) {
+            font-size: 80rpx;
+            font-weight: 600;
+          }
+          > view:nth-child(2), > view:nth-child(3) {
+            font-size: 30rpx;
           }
         }
 
         .icon {
-          width: 64rpx;
-          height: 64rpx;
+          flex: 1;
+          height: 100%;
           image {
             width: 100%;
             height: 100%;
           }
         }
       }
-    }
 
-    .shoes-classification {
-      background-color: #ffffff;
-      margin-top: 20rpx;
-
-      .children {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 20rpx 0rpx;
-
-        .children_item {
-          height: 200rpx;
-          width: 170rpx;
-          text-align: center;
-
-          .child_image {
-            width: 120rpx;
-            height: 120rpx;
-          }
-          .child_name {
-            font-size: 26rpx;
-            color: #666;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            width: 170rpx;
-          }
+      &-b2c {
+        .info {
+          background-color: #EB724D;
+        }
+      }
+      &-c2c {
+        .info {
+          background-color: #EB9C4D;
         }
       }
     }

@@ -21,7 +21,7 @@
     <view class="brand-bd">
       <view class="brand-bd-content">
         <view class="list">
-          <view class="item" wx:for="{{productList}}" wx:for-item="item" wx:key="index">
+          <navigator url="/pages/market/ProductDetail?productId={{encodeURIComponent(item.name)}}" class="item" wx:for="{{productList}}" wx:for-item="item" wx:key="index">
             <view class="item-left">
               <view class="name">{{ item.name }}</view>
               <view class="flex-layout other">
@@ -30,6 +30,7 @@
                   {{ item.isStock ? '现货' : '挂货' }}
                 </view>
                 <view class="real" wx:if="{{ item.isStock && item.isReal }}">
+                  <image src="../../images/global/icon@3x 2.png"></image>
                   认证
                 </view>
               </view>
@@ -40,7 +41,7 @@
             <view class="item-right">
               <image src="{{ item.img }}" mode="aspectFit"></image>
             </view>
-          </view>
+          </navigator>
         </view>
       </view>
     </view>
@@ -70,7 +71,7 @@
     data = {
       productList: [
         {
-          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝” 43码',
+          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝”',
           price: '89',
           secondHandPrice: '8999',
           img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fuhk2by5c0j30j309odm3.jpg',
@@ -80,7 +81,7 @@
           isReal: true
         },
         {
-          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝” 43码',
+          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝”',
           price: '69',
           secondHandPrice: '699',
           img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fuhk2c01d6j30j90b0tf4.jpg',
@@ -90,7 +91,7 @@
           isReal: false
         },
         {
-          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝” 43码',
+          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝”',
           price: '8999',
           secondHandPrice: '12999',
           img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fuhk2by5c0j30j309odm3.jpg',
@@ -100,7 +101,7 @@
           isReal: true
         },
         {
-          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝” 43码',
+          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝”',
           price: '88888',
           secondHandPrice: '0',
           img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fuhk2c01d6j30j90b0tf4.jpg',
@@ -124,7 +125,9 @@
     events = {
     }
 
-    onLoad() {
+    onLoad(params) {
+      console.log(params)
+      console.log(params.id)
     }
   }
 </script>
@@ -212,13 +215,18 @@
                 }
                 .stock, .real {
                   color: #0C0D14;
-                  font-size: 10px;
+                  font-size: 20rpx;
                   border-radius: 10rpx;
                   padding: 6rpx 15rpx;
                   border: 1px solid #323334;
                 }
                 .real {
                   margin-left: 12rpx;
+                  image {
+                    width: 20rpx;
+                    height: 20rpx;
+                    vertical-align: middle;
+                  }
                 }
               }
               .second-hand-price, .price {
