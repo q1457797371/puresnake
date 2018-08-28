@@ -1,0 +1,332 @@
+<template>
+  <view class="product-detail">
+    <!-- 商品图片轮播 -->
+    <view class="product-detail-img">
+      <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{imgUrls}}" wx:key="key">
+          <swiper-item>
+            <image src="{{item}}" class="slide-image" width="355" height="150"/>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
+    <!-- 商品市场信息 -->
+    <view class="product-detail-market">
+      <view>
+        <text class="title">发售信息</text>
+        <text class="type">{{ productInfo.xinghao }}</text>
+        <text class="release-time">{{ productInfo.shijian }}</text>
+        <text class="offer-price">发售价 ¥ {{ productInfo.fashoujia }}</text>
+      </view>
+      <view>
+        <text class="product-name">{{ productInfo.name }}</text>
+      </view>
+      <view>
+        <text class="current-price">¥{{ productInfo.shoujia }}</text>
+        <text class="market-price">市场价¥{{ productInfo.shichangjia }}</text>
+      </view>
+      <view>
+        <view>
+          <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fuhk2bsivej301l013061.jpg" class="nav_icon"></image>
+        </view>
+        <view>
+          分享
+        </view>
+      </view>
+    </view>
+
+    <!-- 商品信息汇总 -->
+    <view class="product-detail-info">
+      <view class="title">NIKE</view>
+      <view class="flex-layout">
+        <view class="series">Free 4.0 Flyknit</view>
+        <view class="function">
+          <text class="active">基本信息 </text>
+          <text>| 护理服务 </text>
+          <text>| 图片详情 </text>
+        </view>
+      </view>
+      <view class="desc">
+        The Nike Free 4.0 Flyknit makes a performance statement echoing those famous words from coach and Nike co-founder Bill Bowerman. Bowerman’s belief was that
+      </view>
+      <view class="openDesc">>></view>
+    </view>
+
+    <!-- 商品基本信息 -->
+    <view class="product-detail-basic">
+      <view class="title">基本信息</view>
+      <view class="content">
+        <view class="flex-layout">
+          <view class="">
+            <text>商品尺码</text>
+            <text>38</text>
+          </view>
+          <view class="">
+            <text>卖家标价</text>
+            <text>¥{{ productInfo.shoujia }}</text>
+          </view>
+        </view>
+
+        <view class="flex-layout">
+          <view class="">
+            <text>卖家押金</text>
+            <text>¥109.0</text>
+          </view>
+          <view class="">
+            <text>是否原盒</text>
+            <text>¥{{ productInfo.shoujia }}</text>
+          </view>
+        </view>
+
+        <view class="flex-layout">
+          <view class="">
+            <text>商品类型</text>
+            <text>平台现货</text>
+          </view>
+          <view class="">
+            <text>新旧磨损</text>
+            <text>8.8成新</text>
+          </view>
+        </view>
+
+        <view class="flex-layout">
+          <view class="">
+            <text>商品类型</text>
+            <text>平台现货</text>
+          </view>
+          <view class="">
+            <text>新旧磨损</text>
+            <text>8.8成新</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+    <!-- 护理服务 -->
+
+    <!-- 图片详情 -->
+    <toast />
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+
+  export default class ProductDetail extends wepy.page {
+    config = {
+      navigationBarTitleText: '商品详情',
+      navigationBarTextStyle: 'white',
+      navigationBarBackgroundColor: '#000000'
+    }
+    components = {
+      toast: Toast
+    }
+
+    data = {
+      imgUrls: [
+        'http://ww1.sinaimg.cn/large/006nn93Fgy1fuf36szjuuj31qi0p07wi.jpg',
+        'http://ww1.sinaimg.cn/large/006nn93Fgy1fuf36rsw5uj31qc0p0b2a.jpg',
+        'http://ww1.sinaimg.cn/large/006nn93Fgy1fuf36o5lp3j31qf0tohdu.jpg',
+        'http://ww1.sinaimg.cn/large/006nn93Fgy1fuf36rsw5uj31qc0p0b2a.jpg'
+      ],
+      indicatorDots: true,
+      autoplay: true,
+      interval: 5000,
+      duration: 1000,
+      indicatorActiveColor: '#fff',
+      productInfo: {
+        xinghao: 'AQ0818-148',
+        shijian: '2018-06-09',
+        fashoujia: '2900',
+        name: 'OFF-BLACK x AIR JORDAN联名2018年“北卡蓝”',
+        shoujia: '4600.00',
+        shichangjia: '8999'
+      }
+    }
+
+    computed = {
+    }
+
+    methods = {
+    }
+
+    events = {
+    }
+
+    onLoad() {
+    }
+  }
+</script>
+
+<style lang="less">
+  .product-detail {
+    background-color: #f5f5f5;
+
+    &-img {
+      padding-top: 67rpx;
+      .swiper {
+        height: 450rpx;
+        .slide-image {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    &-market {
+      position: relative;
+      padding: 13rpx 35rpx;
+      > view:nth-child(1) {
+        > text {
+          color: #777777;
+          font-size: 20rpx;
+        }
+        > text:not(:nth-child(1)) {
+          height: 20rpx;
+          line-height: 20rpx;
+          display: inline-block;
+        }
+        .title {
+          color: #FFF;
+          font-size: 15rpx;
+          background-color: #E87400;
+          padding: 6rpx 16rpx;
+          border-radius: 10rpx;
+          vertical-align: middle;
+          margin-right: 15rpx;
+        }
+        .type {
+          padding-right: 15rpx;
+          border-right: 1px solid #777777;
+        }
+        .release-time {
+          padding: 0rpx 15rpx;
+          border-right: 1px solid #777777;
+        }
+        .offer-price {
+          padding-left: 15rpx;
+        }
+      }
+      > view:nth-child(2) {
+        max-width: 538rpx;
+        margin-top: 14rpx;
+        margin-bottom: 10rpx;
+        text {
+          color: #171616;
+          font-size: 30rpx;
+        }
+      }
+      > view:nth-child(3) {
+        > text:nth-child(1) {
+          color: #E87400;
+          font-size: 30rpx;
+          vertical-align: middle;
+        }
+        > text:nth-child(2) {
+          color: #656B6C;
+          font-size: 22rpx;
+          margin-left: 15rpx;
+        }
+      }
+      > view:nth-child(4) {
+        position: absolute;
+        top: 33rpx;
+        right: 35rpx;
+        > view:nth-child(1) {
+          width: 36rpx;
+          height: 36rpx;
+          margin:0 auto;
+          image {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        > view:nth-child(2) {
+          color: #777777;
+          font-size: 10px;
+          margin-top: 5rpx;
+        }
+      }
+    }
+
+    &-info {
+      background-color: #FFF;
+      padding: 48rpx 35rpx 35rpx 35rpx;
+      .title {
+        color: #171313;
+        font-size: 24px;
+        font-weight: 600;
+      }
+      view:nth-child(2) {
+        margin-top: 4rpx;
+        .series {
+          color: #656B6C;
+          font-size: 14px;
+        }
+        .function {
+          text {
+            color: #707070;
+            font-size: 10px;
+          }
+          .active {
+            color: #171313;
+            font-size: 12px;
+          }
+        }
+      }
+      .desc {
+        color: #777777;
+        font-size: 13px;
+        margin-top: 32rpx;
+      }
+      .openDesc {
+        text-align: center;
+        margin-top: 20rpx;
+      }
+    }
+
+    &-basic {
+      .title {
+        color: #605D5D;
+        font-size: 12px;
+        text-align: center;
+        margin-top: 13rpx;
+        margin-bottom: 13rpx;
+      }
+      .content {
+        background-color: #FFF;
+        padding-top: 25rpx;
+        padding-bottom: 30rpx;
+
+        > view {
+          border-top: 2rpx solid #EEE;
+          > view {
+            width: 50%;
+            height: 88rpx;
+            line-height: 88rpx;
+            padding-left: 35rpx;
+            padding-right: 35rpx;
+            > text {
+              color: #656B6C;
+              font-size: 10px;
+            }
+
+            > text:nth-child(1) {
+              float: left;
+            }
+            > text:nth-child(2) {
+              float: right;
+              font-size: 12px;
+            }
+          }
+          > view:nth-child(1) {
+            border-right: 2rpx solid #EEE;
+          }
+        }
+      }
+    }
+  }
+</style>

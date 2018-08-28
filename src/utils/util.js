@@ -41,60 +41,6 @@ function vailPhone(number) {
   }
   return flag;
 }
-//验证是否西班牙手机(6开头 9位数)
-function ifSpanish(number) {
-  let flag = false;
-  let myreg = /^([6|7|9]{1}(\d+){8})$/;
-  if (number.length != 9) {
-    flag = flag;
-  } else if (!myreg.test(number)) {
-    flag = flag;
-  } else {
-    flag = true;
-  }
-  return flag;
-}
-//浮点型除法
-function div(a, b) {
-  var c, d, e = 0,
-    f = 0;
-  try {
-    e = a.toString().split(".")[1].length;
-  } catch (g) { }
-  try {
-    f = b.toString().split(".")[1].length;
-  } catch (g) { }
-  return c = Number(a.toString().replace(".", "")), d = Number(b.toString().replace(".", "")), mul(c / d, Math.pow(10, f - e));
-}
-//浮点型加法函数   
-function accAdd(arg1, arg2) {
-  var r1, r2, m;
-  try {
-    r1 = arg1.toString().split(".")[1].length;
-  } catch (e) {
-    r1 = 0;
-  }
-  try {
-    r2 = arg2.toString().split(".")[1].length;
-  } catch (e) {
-    r2 = 0;
-  }
-  m = Math.pow(10, Math.max(r1, r2));
-  return ((arg1 * m + arg2 * m) / m).toFixed(2);
-}
-//浮点型乘法
-function mul(a, b) {
-  var c = 0,
-    d = a.toString(),
-    e = b.toString();
-  try {
-    c += d.split(".")[1].length;
-  } catch (f) { }
-  try {
-    c += e.split(".")[1].length;
-  } catch (f) { }
-  return Number(d.replace(".", "")) * Number(e.replace(".", "")) / Math.pow(10, c);
-}
 
 // 遍历对象属性和值
 function displayProp(obj) {

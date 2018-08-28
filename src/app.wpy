@@ -1,7 +1,5 @@
 <style lang="less">
   @import "./styles/base";
-  @import "./styles/icon";
-  @import "./styles/style";
 </style>
 
 <script>
@@ -11,11 +9,12 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/market/brand',
+      // 'pages/market/ProductDetail',
       'pages/news/index',
       'pages/market/index',
       'pages/market/category',
-      // 'pages/market/brand',
+      'pages/market/brand',
+      'pages/market/ProductDetail',
       'pages/market/list',
       'pages/market/consign',
       'pages/clean/index',
