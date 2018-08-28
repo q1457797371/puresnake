@@ -7,7 +7,7 @@
       @search.user="doSearch"
     ></search>
 
-    <filterBar wx:if="{{list.length >0 || skuval !==''}}" @currentType.user="currentType"></filterBar>
+    <filterBar wx:if="{{list.length > 0 || skuval !==''}}" @currentType.user="currentType"></filterBar>
     <view wx:if="{{list.length > 0}}">
       <!--矩阵商品列表模块-->
       <shopGridList :purchasetype.sync="purchasetype" :list.sync="list"></shopGridList>
@@ -15,9 +15,9 @@
       <bottomLoadMore :show.sync="showLoading" message="正在加载"></bottomLoadMore>
       <!--暂无数据显示-->
       <placeholder :show.sync="is_empty" message="暂无发现数据"></placeholder>
-
     </view>
-    <view class="history {{show?'':'hidden'}}" wx:else>
+
+    <view class="history {{show ? '' : 'hidden'}}" wx:else>
       <view class="doc">历史记录</view>
       <view class="lable">
         <view wx:for="{{keywordhisList}}" wx:key="item" @tap.stop="selHisKeyWord" data-id="{{item.id}}">
@@ -108,19 +108,19 @@
       title: '',
       skuval: ''
     }
-    async getKeyWordHisList() {
-      let userSpecialInfo = wepy.getStorageSync(USER_SPECICAL_INFO) || {}
-      let openId = userSpecialInfo.openid
-      const json = await api.searchKeywordList({
-        query: {
-          openId: openId
-        }
-      })
-      if (json.data.code === 0) {
-        this.keywordhisList = json.data.list
-      }
-      this.$apply()
-    }
+    // async getKeyWordHisList() {
+    //   let userSpecialInfo = wepy.getStorageSync(USER_SPECICAL_INFO) || {}
+    //   let openId = userSpecialInfo.openid
+    //   const json = await api.searchKeywordList({
+    //     query: {
+    //       openId: openId
+    //     }
+    //   })
+    //   if (json.data.code === 0) {
+    //     this.keywordhisList = json.data.list
+    //   }
+    //   this.$apply()
+    // }
     setTitle(title) {
       wepy.setNavigationBarTitle({
         title: title
