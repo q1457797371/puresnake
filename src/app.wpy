@@ -9,6 +9,7 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
+      // 'pages/clean/index',
       'pages/news/index',
       'pages/market/index',
       'pages/market/category',

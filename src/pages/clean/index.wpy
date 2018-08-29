@@ -1,27 +1,25 @@
 <template>
   <view class="clean">
+    <view class="clean-title">
+      <view>
+        <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fuqu5yjvgej31qi0t9tmr.jpg" class="nav_icon"></image>
+      </view>
+      <view>
+        <view>HERE</view>
+        <view>TO</view>
+        <view>SERVICE</view>
+      </view>
+    </view>
 
     <view class="clean-header">
-      <view class="clean-header-icon">
-        <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1ftz5oe010hj303i029dfr.jpg" />
-      </view>
       <view class="clean-header-name">
         <text>Pure Snake</text>
         <text>X</text>
         <text>某某工厂</text>
       </view>
-      <view class="clean-header-desc">我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介</view>
-      <view class="clean-header-lookup">了解更多</view>
+      <view class="clean-header-desc">简介介绍信息简介介绍信息简介介绍信息简介介简介介绍信息简介介绍信息简介介绍信息介绍信息</view>
+      <view class="clean-header-lookup">> 了解更多</view>
     </view>
-
-    <!-- 轮播条 -->
-    <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-      <block wx:for="{{imgUrls}}" wx:key="key">
-        <swiper-item>
-          <image src="{{item}}" class="slide-image" width="355" height="150"/>
-        </swiper-item>
-      </block>
-    </swiper>
 
     <view class="clean-service">
       <view class="flex-layout clean-service-title">
@@ -41,7 +39,8 @@
   export default class Clean extends wepy.page {
     config = {
       navigationBarTitleText: '清理服务',
-      navigationBarTextStyle: 'black'
+      navigationBarTextStyle: 'white',
+      navigationBarBackgroundColor: '#000000'
     }
     components = {
       toast: Toast
@@ -69,55 +68,76 @@
 
 <style lang="less">
   .clean {
-    background-color: #f5f5f5;
 
-    &-header {
-      padding: 70rpx;
-      text-align: center;
-      background-color: #FFFFFF;
+    &-title {
+      position: relative;
+      width: 100%;
+      height: 350rpx;
 
-      &-icon {
-        width: 80rpx;
-        height: 80rpx;
-        margin-left: auto;
-        margin-right: auto;
+      > view:nth-child(1) {
+        width: 100%;
+        height: 100%;
         image {
           width: 100%;
           height: 100%;
         }
       }
+      > view:nth-child(2) {
+        position: absolute;
+        top: 50%;
+        left: 53.5rpx;
+        transform: translateY(-50%);
+        z-index: 5;
+        color: #FFF;
+        box-shadow: 0 3 6 0 rgba(0, 0, 0, 0.16);
+        > view {
+          font-size: 66rpx;
+          font-weight: 600;
+        }
+      }
+    }
+
+    &-title::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      opacity: 0.36;
+    }
+
+    &-header {
+      padding: 43rpx;
+      text-align: left;
+      background-color: #FFFFFF;
+
       &-name {
+        text {
+          font-size: 36rpx;
+        }
         text:nth-child(1) {
-          color: #000000;
-          font-size: 42rpx;
+          color: #353535;
         }
         text:nth-child(2) {
-          color: #FF6739;
-          font-size: 32rpx;
+          color: #FF8000;
           margin-left: 8rpx;
           margin-right: 8rpx;
         }
         text:nth-child(3) {
-          color: #000000;
-          font-size: 32rpx;
+          color: #353535;
         }
       }
       &-desc {
-        color: #B7B7B7;
-        font-size: 24rpx;
-        margin-top: 20rpx;
+        color: #878585;
+        font-size: 20rpx;
+        margin-top: 26.5rpx;
       }
       &-lookup {
+        text-align: right;
         color: #FF6739;
         font-size: 24rpx;
-      }
-    }
-
-    .swiper {
-      height: 250rpx;
-      .slide-image {
-        width: 100%;
-        height: 100%;
       }
     }
   }

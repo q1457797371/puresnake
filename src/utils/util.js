@@ -80,9 +80,5 @@ module.exports = {
   sTrim: sTrim,
   replaceMaohao: replaceMaohao,
   vailPhone: vailPhone,
-  ifSpanish: ifSpanish,
-  div: div,
-  mul: mul,
-  accAdd: accAdd,
   convertStarArray: convertStarArray
 }
