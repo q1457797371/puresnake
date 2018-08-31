@@ -9,7 +9,6 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
-      // 'pages/clean/index',
       'pages/news/index',
       'pages/market/index',
       'pages/market/category',
@@ -19,6 +18,7 @@ export default class extends wepy.app {
       'pages/market/consign',
       'pages/clean/index',
       'pages/user/index',
+      'pages/user/BindPhone',
       'pages/user/AddressManagement',
       'pages/user/AddressAdd',
       'pages/user/collect',
@@ -26,7 +26,9 @@ export default class extends wepy.app {
       'pages/user/purchase',
       'pages/user/money',
       'pages/user/bindAlipay',
-      'components/SellerNotice',
+      'components/PlatformRules/SellerNotice',
+      'components/PlatformRules/BuyersNotice',
+      'components/PlatformRules/TradingRules',
       'pages/search/search'
     ],
     window: {

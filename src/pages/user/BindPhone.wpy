@@ -1,0 +1,255 @@
+<template>
+  <view class="bind-phone">
+
+    <view class="bind-phone-title">绑定⼿手机号码</view>
+
+    <view class="bind-phone-form">
+      <form bindsubmit="formSubmit" action="javascript:void(0)">
+        <view class="block">
+          <view class="list_item">
+            <view class="title">手机号</view>
+            <view class="input">
+              <input
+                type="number"
+                bindinput="bindKeyInput"
+                data-name="account"
+                maxlength="11"
+                placeholder-style="color: #A3A3A3"
+                placeholder="请输入手机号" />
+            </view>
+          </view>
+
+          <view class="list_item">
+            <view class="title">验证码</view>
+            <view class="input">
+              <input
+                type="number"
+                bindinput="bindKeyInput"
+                data-name="code"
+                maxlength="4"
+                placeholder-style="color: #A3A3A3"
+                placeholder="请输入短信验证码" />
+            </view>
+            <view class="getCode {{ isAble ? 'able' : '' }}" @tap="getAuthCode">{{ authCodeText }}</view>
+          </view>
+
+        </view>
+        <view class="btn_box">
+          <view class="button unable {{ canLogin ? 'able' : '' }}" formType="submit">
+            完成
+          </view>
+        </view>
+      </form>
+    </view>
+
+    <view class="bind-phone-footer">
+      <image src="../../images/global/icon@3x.png" />
+    </view>
+
+    <toast />
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+  import tip from '@/utils/tip'
+
+  export default class BindPhone extends wepy.page {
+    config = {
+      navigationBarTitleText: '绑定手机号',
+      navigationBarTextStyle: 'white',
+      navigationBarBackgroundColor: '#000000'
+    }
+    components = {
+      toast: Toast
+    }
+
+    data = {
+      authCodeText: '发送验证码',
+      canGetAuthCode: true,
+      account: '',
+      name: '',
+      code: ''
+    }
+
+    computed = {
+      isAble: function () {
+        return !!this.account && this.canGetAuthCode
+      },
+      canLogin: function () {
+        return !!this.account && !!this.code
+      }
+    }
+
+    methods = {
+      /**
+       * @method 绑定输入值
+       * @param { null }
+       * return { null }
+       */
+      bindKeyInput: function(e) {
+        this[e.target.dataset.name] = e.detail.value
+      },
+
+      /**
+       * @method 点击获取验证码
+       * @param { null }
+       * return { null }
+       */
+      getAuthCode: function () {
+        let that = this
+        if (!that.account) {
+          tip.error('请输入手机号码')
+          return false
+        }
+
+        if (that.canGetAuthCode) {
+          that.canGetAuthCode = false
+
+          let i = 59
+          that.authCodeText = `${i}s`
+          i--
+          const counter = setInterval(() => {
+            that.authCodeText = `${i}s`
+            this.$apply()
+            i--
+
+            if (i <= -1) {
+              clearInterval(counter)
+              that.authCodeText = '重新获取'
+              that.canGetAuthCode = true
+              this.$apply()
+            }
+          }, 1000)
+          // ajax 获取验证码写在这里
+          // let data = {
+          //   'mobile': this.mobilePhone
+          // }
+          // this.getMobileVerifyCode(data).then(res => {
+          //   if (res.data.status === 200) {
+
+          //     this.canGetAuthCode = false
+
+          //     let i = 59
+          //     this.authCodeText = `${i}s`
+          //     i--
+          //     const counter = setInterval(() => {
+          //         this.authCodeText = `${i}s`
+          //         i--
+
+          //         if (i < -1) {
+          //             clearInterval(counter)
+
+          //             this.authCodeText = '重新获取'
+          //             this.canGetAuthCode = true
+          //         }
+          //     }, 1000)
+          //   } else {
+          //     this.canGetAuthCode = true
+          //   }
+          // })
+        }
+      },
+
+      formSubmit(e) {
+        let account = this.data.account
+        let code = this.data.code
+
+        if (account === '') {
+          tip.toast('输入账户')
+          return false
+        }
+
+        if (code === '') {
+          tip.toast('输入验证码')
+          return false
+        }
+
+        console.log('输入账户' + account + '输入验证码' + code)
+        // this.addAddress(e.detail.value)
+      }
+    }
+
+    events = {
+    }
+
+    onLoad() {
+    }
+  }
+</script>
+
+<style lang="less">
+  .bind-phone {
+    padding: 0rpx 60rpx;
+    height: 100vh;
+
+    &-title {
+      font-size: 30rpx;
+      color: #000000;
+      margin-top: 104rpx;
+      margin-bottom: 40rpx;
+    }
+
+    &-form {
+      .block {
+        background: #fff;
+      }
+
+      .list_item {
+        display: flex;
+        align-items: center;
+        padding: 35rpx 0rpx;
+        border-bottom: 1px solid #f5f5f5;
+        .title {
+          color: #000000;
+          font-size: 25rpx;
+          margin-right: 20rpx;
+        }
+        .input {
+          flex: 1;
+          input {
+            font-size: 25rpx;
+            color: #000000;
+          }
+        }
+        .getCode {
+          padding: 5rpx 9rpx;
+          font-size: 25rpx;
+          border: 1px solid #f5f5f5;
+          border-radius: 5rpx;
+          color: #A3A3A3;
+        }
+        .able {
+          color: #FF8000;
+        }
+      }
+
+      .btn_box {
+        margin-top: 64rpx;
+        > view {
+          text-align: center;
+          margin: 64rpx auto; 
+        }
+        
+        .unable {
+          color: #A3A3A3;
+        }
+        .able {
+          color: #FF8000;
+        }
+      }
+    }
+
+    &-footer {
+      position: fixed;
+      bottom: 70rpx;
+      left: 50%;
+      transform: translateX(-50%);
+      image {
+        width: 268rpx;
+        height: 172rpx;
+      }
+    }
+  }
+</style>

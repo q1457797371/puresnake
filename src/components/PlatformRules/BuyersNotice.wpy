@@ -1,0 +1,134 @@
+<template>
+  <view class="notice">
+    <!-- 卖家须知头部 -->
+    <view class="notice-header">
+      <view class="platform">Snake 官方交易申明</view>
+      <view class="notice">买家须知</view>
+    </view>
+
+    <!-- 卖家须知内容 -->
+    <view class="notice-content">
+
+      <view class="notice-content-notice">
+        <text style="color: #ff4455">*</text>
+        请买家注意，如您在puresnake平台购买商品，则视为您同意并认可puresnake平台的交易流程、交易模式以及提供的服务。如果您不同意本须知的任何内容，或者无法准确理解本须知的内容，请不要进行后续操作。
+      </view>
+
+      <view class="notice-content-detail">
+        <view class="notice-content-detail-item">
+          <view class="title">
+            交易流程
+          </view>
+          <view class="desc">
+            1. 卖家通过puresnake平台购买商品。
+          </view>
+          <view class="desc">
+            2. puresnake平台查验商品。
+          </view>
+          <view class="desc">
+            3. 查验通过发货至买家，查验未通过退回至卖家。
+          </view>
+          <view class="desc">
+            4.  卖家拆封查验商品并签收（签收根据物流信息为准）。
+          </view>
+        </view>
+
+        <view class="notice-content-detail-item">
+          <view class="title">
+            发货须知
+          </view>
+          <view class="desc">
+            1. 国内现货直邮，卖家必须在买家下单后24小时内使用顺丰速运寄往puresnake平台指定的地点进行查验，查验护理后5日内发货。
+          </view>
+
+          <view class="desc">
+            2. 如卖家在规定时间内未发货，经买家申请，puresnake平台将取消订单，卖家将退还买家商品款。<view class="desc2" style="color: red">＊ 注意：具体发货时间以商品确定订单页面具体说明为准。</view>
+          </view>
+        </view>
+
+        <view class="notice-content-detail-item">
+          <view class="title">
+            到货时间
+          </view>
+          <view class="desc">
+            一般情况下，整个交易流程不超过7个工作日，但特殊情况如偏远地区、极端天气、节假日、快递等原因除外。
+          </view>
+        </view>
+
+        <view class="notice-content-detail-item">
+          <view class="title">
+            交易关闭及退款
+          </view>
+          <view class="desc">
+            买家付款后，若出现以下情况，买家同意puresnake平台关闭交易，并将全额退款给买家。
+          </view>
+          <view class="desc">
+            1.  卖家规定时间内未发货或者虚假发货导致交易关闭。
+          </view>
+          <view class="desc">
+            2.  商品未通过puresnake平台的查验。
+          </view>
+        </view>
+
+        <view class="notice-content-detail-item">
+          <view class="title">
+            取消订单
+          </view>
+          <view class="desc">
+            交易达成后，在卖家还未发货的情况下，卖家有权在付款后的24小时之内取消订单。
+          </view>
+          <view class="desc">
+            1. 成功付款30分钟以内，取消订单时买家将赔付卖家违约金18元。
+          </view>
+          <view class="desc">
+            2. 成功付款30分钟以后，取消订单时买家讲赔付卖家违约金28元。
+            <view class="desc2" style="color: red">＊ 注意：赔付费用说明，卖家交易机会跟人工打包费用。</view>
+          </view>
+        </view>
+
+        <view class="notice-content-detail-item">
+          <view class="title">
+            退货换货
+          </view>
+          <view class="desc">
+            因某些商品属于限量款商品，故存在市场价格波动以及同一款式同一尺码商品在交易时仅有一件等情况，如无真伪问题，puresnake平台暂不支持商品的退换货服务。如有特殊情况，买家可以在订单详情页面中的帮助页面联系客服进行协商。
+          </view>
+        </view>
+
+        <view class="notice-content-detail-item">
+          <view class="title">
+            免责申明
+          </view>
+          <view class="desc">
+            1. 对于使用、利用puresnake平台从事的相关行为、商城平台中所涉信息等，卖家及买家不得有恶意欺骗、欺诈之行为，亦不得故意或过失损害puresnake平台的合法权益；因卖家违约、违规等行为与第三人产生的纠纷，买家向卖家主张权利时，puresnake平台将提供及时的帮助，协助买家处理相关问题。
+          </view>
+          <view class="desc">
+            2. puresnake平台将尽最大努力打击伪劣商品，但puresnake平台对商品的查验行为不代表puresnake平台对卖家、商品质量或真伪进行任何形式的担保或保证。如商品为假冒产品，puresnake平台作为第三方网络服务提供商，将协助买家维权，并由卖家直接向买家承担违约责任或赔偿责任。
+          </view>
+          <view class="desc">
+            3. 本规则的最终解释权归puresnake平台所有，puresnake平台有权对本规则进行修改并公示。
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class BuyersNotice extends wepy.page {
+    config = {
+      navigationBarTitleText: '买家须知',
+      navigationBarTextStyle: 'white',
+      navigationBarBackgroundColor: '#000000'
+    }
+  }
+</script>
+
+<style lang="less">
+  @import "../../styles/notice.less";
+  view {
+    color: #000000;
+  }
+</style>

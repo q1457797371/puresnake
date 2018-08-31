@@ -1,21 +1,21 @@
 <template>
-  <view class="seller-notice">
+  <view class="notice">
     <!-- 卖家须知头部 -->
-    <view class="seller-notice-header">
+    <view class="notice-header">
       <view class="platform">Snake 官方交易申明</view>
       <view class="notice">卖家须知</view>
     </view>
 
     <!-- 卖家须知内容 -->
-    <view class="seller-notice-content">
+    <view class="notice-content">
 
-      <view class="seller-notice-content-notice">
+      <view class="notice-content-notice">
         <text style="color: #ff4455">*</text>
         请卖家注意，如您在snake平台销售商品，则视为您同意并认可snake平台的交易流程、交易模式和提供的服务。
       </view>
 
-      <view class="seller-notice-content-detail">
-        <view class="seller-notice-content-detail-item">
+      <view class="notice-content-detail">
+        <view class="notice-content-detail-item">
           <view class="title">
             如何确保求购信息和出售信息的有效？
           </view>
@@ -40,7 +40,7 @@
           </view>
         </view>
 
-        <view class="seller-notice-content-detail-item">
+        <view class="notice-content-detail-item">
           <view class="title">
             如何确保商品的真假和全新？
           </view>
@@ -56,7 +56,7 @@
           </view>
         </view>
 
-        <view class="seller-notice-content-detail-item">
+        <view class="notice-content-detail-item">
           <view class="title">
             真假和全新的标准？
           </view>
@@ -77,7 +77,7 @@
           </view>
         </view>
 
-        <view class="seller-notice-content-detail-item">
+        <view class="notice-content-detail-item">
           <view class="title">
             卖家不发货是否有惩罚？
           </view>
@@ -95,7 +95,7 @@
           </view>
         </view>
 
-        <view class="seller-notice-content-detail-item">
+        <view class="notice-content-detail-item">
           <view class="title">
             买家购买意向反悔是否有惩罚？
           </view>
@@ -113,7 +113,7 @@
           </view>
         </view>
 
-        <view class="seller-notice-content-detail-item">
+        <view class="notice-content-detail-item">
           <view class="title">
             如何发布出售信息?
           </view>
@@ -131,7 +131,7 @@
           </view>
         </view>
 
-        <view class="seller-notice-content-detail-item">
+        <view class="notice-content-detail-item">
           <view class="title">
             完整的交易流程是怎样的？?
           </view>
@@ -143,13 +143,11 @@
         </view>
       </view>
     </view>
-    <toast />
   </view>
 </template>
 
 <script>
   import wepy from 'wepy'
-  import Toast from 'wepy-com-toast'
 
   export default class SellerNotice extends wepy.page {
     config = {
@@ -157,96 +155,12 @@
       navigationBarTextStyle: 'white',
       navigationBarBackgroundColor: '#000000'
     }
-    components = {
-      toast: Toast
-    }
-
-    data = {
-    }
-
-    computed = {
-    }
-
-    methods = {
-    }
-
-    events = {
-    }
-
-    onLoad() {
-    }
   }
 </script>
 
 <style lang="less">
+  @import "../../styles/notice.less";
   view {
     color: #000000;
-  }
-
-  .seller-notice {
-
-    &-header {
-      width: 100%;
-      height: 300rpx;
-      text-align: center;
-      background-color: #353535;
-
-      .platform {
-        color: #e9c18a;
-        font-size: 30rpx;
-        padding-top: 60rpx;
-      }
-      .notice {
-        color: #fffcdd;
-        font-size: 90rpx;
-        margin-top: 25rpx;
-      }
-    }
-
-    &-content {
-      padding: 48rpx;
-
-      &-notice {
-        font-size: 26rpx;
-      }
-
-      &-detail {
-        &-item {
-          width: 100%;
-          margin: 0 auto;
-          text-align: left;
-          margin-top: 50rpx;
-          margin-bottom: 30rpx;
-          color: #14151a;
-
-          .title {
-            font-size: 40rpx;
-          }
-          .desc {
-            margin-top: 10rpx;
-            font-size: 26rpx;
-            font-weight: 300;
-            width: 100%;
-
-            view {
-              width: 100%;
-              image {
-                width: 100%;
-              }
-            }
-          }
-
-          .desc2 {
-            font-size: 20rpx;
-          }
-
-          .desc-sub {
-            font-size: 26rpx;
-            font-weight: 300;
-            text-indent: 30rpx;
-          }
-        }
-      }
-    }
   }
 </style>

@@ -2,28 +2,56 @@
   <view class="collect">
 
     <!-- tab 切换模块 -->
-    <view class="flex-layout swiper-tab">
-      <view wx:for="{{ tabList }}" wx:key="index" class="swiper-tab-list {{currentTab == index ? 'active' : ''}}" data-current="{{index}}" bindtap="swichNav">
-        {{item.name ? item.name : item}}
+    <view class="flex-layout collect-hd">
+      <view wx:for="{{ tabList }}" wx:key="index" class="collect-hd-list" @tap="swichNav({{index}})">
+        <text class="{{currentTab == index ? 'active' : ''}}">{{item.name ? item.name : item}}</text>
       </view>
     </view>
 
-    <scroll-view scroll-y="true" class="swiper-item-box" style="height:{{winHeight - 31}}px" bindscrolltolower="onReachBottom">
+    <scroll-view scroll-y="true" class="collect-bd" bindscrolltolower="onReachBottom">
       <!-- 我的收藏-商品 -->
-      <productlist :productList="productList" :indexa="index" wx:if="{{currentTab === 0}}"></productlist>
+      <view class="collect-bd-wish" wx:if="{{currentTab === 0}}">
+        <view class="list">
+          <navigator url="/pages/market/ProductDetail?productId={{encodeURIComponent(item.name)}}" class="item" wx:for="{{productList}}" wx:for-item="item" wx:key="index">
+            <view class="item-left">
+              <view class="name">{{ item.name }}</view>
+              <view class="flex-layout other">
+                <view class="size">{{ item.size }}码</view>
+                <view class="stock">
+                  {{ item.isStock ? '现货' : '挂货' }}
+                </view>
+                <view class="real" wx:if="{{ item.isStock && item.isReal }}">
+                  <image src="../../images/global/icon@3x 2.png"></image>
+                  认证
+                </view>
+              </view>
+
+              <view class="second-hand-price">二手价格: {{ item.secondHandPrice }}</view>
+              <view class="price">市场价格: {{ item.price }}</view>
+            </view>
+            <view class="item-right">
+              <image src="{{ item.img }}" mode="aspectFit"></image>
+            </view>
+          </navigator>
+        </view>
+      </view>
 
       <!-- 我的收藏-资讯 -->
       <view wx:if="{{currentTab === 1}}">
+
         <view class="news_section_list">
-          <navigator class="news_section_item" open-type="navigate" wx:for="{{newsList}}" wx:key="item" url="/pages/home_detail?code={{item.code}}" >
+          <navigator class="news_section_item" open-type="navigate" wx:for="{{newsList}}" wx:key="item" url="{{item.url}}" >
             <image class="news_section_img" src="{{item.img}}"></image>
             <view class="news_section_title">{{item.title}}</view>
-            <view>
+            <view class="flex-layout news_section_info">
               <view>
-                <view class="news_section_category">{{item.category}}</view>
-                <view class="news_section_time">{{item.time}}</view>
+                <text class="news_section_category">{{item.category}}</text>
+                <text class="news_section_time">{{item.time}}</text>
               </view>
-              <view class="news_section_view">{{item.view}}</view>
+              <view>
+                <image src="../../images/news/view@3x.png" class="news_section_view_icon"></image>
+                <text class="news_section_view">{{item.view}}</text>
+              </view>
             </view>
           </navigator>
         </view>
@@ -42,7 +70,8 @@
   export default class Collect extends wepy.page {
     config = {
       navigationBarTitleText: '收藏',
-      navigationBarTextStyle: 'black'
+      navigationBarTextStyle: 'white',
+      navigationBarBackgroundColor: '#000000'
     }
     components = {
       productlist: ProductList,
@@ -50,55 +79,85 @@
     }
 
     data = {
-      tabList: ['商品', '资讯'],
+      tabList: ['心愿单', '资讯'],
       currentTab: 0,
       productList: [
         {
-          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝” 43码',
+          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝”',
           price: '89',
           secondHandPrice: '8999',
-          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054pdzej30c309x77f.jpg',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fuhk2by5c0j30j309odm3.jpg',
           brandIcon: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054lgbej302f02r0sj.jpg',
+          size: 43,
           isStock: true,
           isReal: true
         },
         {
-          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝” 43码',
+          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝”',
           price: '69',
           secondHandPrice: '699',
-          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054pdzej30c309x77f.jpg',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fuhk2c01d6j30j90b0tf4.jpg',
           brandIcon: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054lgbej302f02r0sj.jpg',
           isStock: false,
+          size: 43,
           isReal: false
         },
         {
-          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝” 43码',
+          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝”',
           price: '8999',
           secondHandPrice: '12999',
-          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054pdzej30c309x77f.jpg',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fuhk2by5c0j30j309odm3.jpg',
           brandIcon: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054lgbej302f02r0sj.jpg',
           isStock: false,
+          size: 43,
           isReal: true
         },
         {
-          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝” 43码',
+          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝”',
           price: '88888',
           secondHandPrice: '0',
-          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054pdzej30c309x77f.jpg',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fuhk2c01d6j30j90b0tf4.jpg',
           brandIcon: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054lgbej302f02r0sj.jpg',
           isStock: true,
+          size: 43,
           isReal: false
         }
       ],
       newsList: [
         {
-          img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-          title: 'Jordan Why Not Zer0.1 开箱：顶级的缓震、全…',
+          url: 'https://mp.weixin.qq.com/s?__biz=MzU1OTYxNTg4MQ==&mid=2247484929&idx=1&sn=04eb6c26afed6407f8e704a6395c14e9&chksm=fc15dce7cb6255f1ef0eb769444686eaadd55c4a579e68987941accf206ee40d3c972495f1dc&token=2003904343&lang=zh_CN#rd',
+          img: 'http://mmbiz.qpic.cn/mmbiz_jpg/LBxzFHDRT0QS6CqfY9ibsUgk2bKRFDYxzTEwfSaFWoVfPkBEIT6q9V2Sko3brWicHqiaBia7EVyecVssUvtw1R8GNQ/0?wx_fmt=jpeg',
+          title: 'YEEZY BOOST 350 V2 全新「Static」配色更多实物谍照曝光｜Pure Snak今日头条',
           category: '时尚',
-          time: '7-19',
-          view: '199'
+          time: '08-06',
+          view: '57'
         },
         {
+          url: 'https://mp.weixin.qq.com/s?__biz=MzU1OTYxNTg4MQ==&mid=2247484877&idx=1&sn=3640365246b78183c7cc0396de9ef4e3&chksm=fc15df2bcb62563ddb7f529a46cd5d69ef2895fdba60ec6b47d7687270f69562c511a709f07e&token=2003904343&lang=zh_CN#rd',
+          img: 'https://mmbiz.qpic.cn/mmbiz_jpg/LBxzFHDRT0RYcMC8ldNUNhMIib2akSBsHewNolOhpkoicONWGiciaEiaR2EiawTSGZAicXmV2sBWyVjYlOoamGaChENsg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1',
+          title: 'Nike Vandal Supreme 复刻千禧年经典黑金配色｜Pure Snake今日头条',
+          category: '时尚',
+          time: '08-02',
+          view: '5'
+        },
+        {
+          url: 'https://mp.weixin.qq.com/s?__biz=MzU1OTYxNTg4MQ==&mid=2247484637&idx=1&sn=417db9ee32a619d7e07095b205480e33&chksm=fc15de3bcb62572d132eb5069d2ec85de72ac71220f404100ba829ccd7492250441f0598beb0&token=2003904343&lang=zh_CN#rd',
+          img: 'https://mmbiz.qpic.cn/mmbiz_jpg/LBxzFHDRT0Q3Oma1khbhSKJyrw6iaBcuRQicYluDRibDPUdbpDhToKf8CRwQ0I0uicOch2zd0GfHZvTGsEvmURdvtw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1',
+          title: '疑似 UNDERCOVER 联名！新款 Nike Zoom Fly SP 实物曝光｜Pure Snake今日头条',
+          category: '潮流',
+          time: '8-19',
+          view: '299'
+        },
+        {
+          url: 'https://mp.weixin.qq.com/s?__biz=MzU1OTYxNTg4MQ==&mid=2247484637&idx=2&sn=6700faf72d8509713e0318cd3b3b258f&chksm=fc15de3bcb62572db306bc20ddfb7c6cbf69bd61eea397b5211a8db90fbb01b50de87ca242f5&token=2003904343&lang=zh_CN#rd',
+          img: 'https://mmbiz.qpic.cn/mmbiz_jpg/LBxzFHDRT0Q3Oma1khbhSKJyrw6iaBcuRpeqrZrYsgkGK4kPAb3Zxs05Rdfl0HH86JcRhHq3hxkopwJjxqsWgbA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1',
+          title: '冠希晒出两双天价鞋！还有特殊版本 CLOT x AF1 和好多潮流狠货！',
+          category: '潮流',
+          time: '07-27',
+          view: '299'
+        },
+        {
+          url: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
           img: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
           title: 'Jordan Why Not Zer0.1 开箱：顶级的缓震、全…',
           category: '潮流',
@@ -106,22 +165,9 @@
           view: '299'
         },
         {
+          url: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
           img: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-          title: 'Jordan Why Not Zer0.1 开箱：顶级的缓震、全…',
-          category: '潮流',
-          time: '8-19',
-          view: '299'
-        },
-        {
-          img: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-          title: 'Jordan Why Not Zer0.1 开箱：顶级的缓震、全…',
-          category: '潮流',
-          time: '8-19',
-          view: '299'
-        },
-        {
-          img: 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-          title: 'Jordan Why Not Zer0.1 开箱：顶级的缓震、全…',
+          title: 'Jo',
           category: '潮流',
           time: '8-19',
           view: '299'
@@ -136,8 +182,8 @@
       /**
        * 点击tab切换
        */
-      swichNav(e) {
-        this.currentTab = e.target.dataset.current
+      swichNav(index) {
+        this.currentTab = index
         console.log(this.currentTab)
       }
     }
@@ -152,37 +198,155 @@
 
 <style lang="less">
   .collect {
-    .swiper-tab {
+    &-hd {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
       border-bottom: 1rpx solid #eee;
       text-align: center;
+      height: 80rpx;
       line-height: 80rpx;
       background: #fff;
+
+      &-list {
+        flex: 1;
+        position: relative;
+
+        text {
+          display: inline-block;
+          color: #6A6A6A;
+          font-size: 28rpx;
+          border-bottom: 5rpx solid transparent;
+        }
+
+        .active {
+          font-weight: 600;
+          border-bottom: 5rpx solid #eb6623;
+        }
+      }
     }
 
-    .swiper-tab-list {
-      flex: 1;
-      font-size: 30rpx;
-      color: #777777;
-      padding: 0 20rpx;
-      position: relative;
-    }
-
-    .active {
-      color: #eb6623;
-      border-bottom: 5rpx solid #eb6623;
-    }
-
-    .swiper-box {
+    &-bd {
+      position: fixed;
+      top: 85rpx;
+      left: 0;
       display: block;
       height: 100%;
       width: 100%;
-      overflow: hidden;
-    }
 
-    .swiper-item-box {
-      overflow-y: scroll;
-      overflow-x: hidden;
+      &-wish {
+        .list {
+          background-color: #e4e4e4;
+          .item {
+            position: relative;
+            margin-bottom: 10rpx;
+            background-color: #F6F6F6;
+            &-left {
+              padding-top: 40rpx;
+              padding-left: 60rpx;
+              padding-bottom: 83rpx;
+              .name {
+                color: #171313;
+                font-size: 14px;
+                max-width: 400rpx;
+                font-weight: 600;
+              }
+              .other {
+                color: #171313;
+                margin-top: 14rpx;
+                justify-content: flex-start;
+                .size {
+                  font-size: 12px;
+                  margin-right: 30rpx;
+                }
+                .stock, .real {
+                  color: #0C0D14;
+                  font-size: 20rpx;
+                  border-radius: 10rpx;
+                  padding: 6rpx 15rpx;
+                  border: 1px solid #323334;
+                }
+                .real {
+                  margin-left: 12rpx;
+                  image {
+                    width: 20rpx;
+                    height: 20rpx;
+                    vertical-align: middle;
+                  }
+                }
+              }
+              .second-hand-price, .price {
+                margin-top: 63rpx;
+                color: #656B6C;
+                font-size: 12px;
+              }
+              .price {
+                opacity: 0.5;
+                margin-top: 5rpx;
+              }
+            }
+
+            &-right {
+              position: absolute;
+              right: 60rpx;
+              bottom: 30rpx;
+              image {
+                width: 350rpx;
+                height: 210rpx;
+              }
+            }
+          }
+        }
+      }
+
+      .news_section_item {
+        .news_section_img {
+          width: 100%;
+          height: 370rpx;
+        }
+        .news_section_title {
+          padding: 25rpx 35rpx;
+          color: #656B6C;
+          font-size: 30rpx;
+          background-color: #FFFFFF;
+          max-width: 680rpx;
+          overflow: hidden;
+          text-overflow:ellipsis;
+          white-space: nowrap;
+          margin-top: -10rpx;
+        }
+        .news_section_info {
+          padding: 0rpx 35rpx 25rpx 35rpx;
+          background-color: #FFFFFF;
+          justify-content: space-between;
+          view {
+            color: #656B6C;
+            font-size: 20rpx;
+          }
+          > view:nth-child(1) {
+            .news_section_category {
+              padding: 5rpx 23rpx;
+              border: 1px solid #707070;
+              margin-right: 21rpx;
+            }
+            .news_section_time {
+            }
+          }
+          > view:nth-child(2) {
+            .news_section_view_icon {
+              display: inline-block;
+              width: 28rpx;
+              height: 22rpx;
+              margin-right: 12rpx;
+              vertical-align: middle;
+            }
+            .news_section_view {
+
+            }
+          }
+        }
+      }
     }
   }
 </style>

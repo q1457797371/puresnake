@@ -1,0 +1,148 @@
+<template>
+  <view class="notice">
+    <!-- 卖家须知头部 -->
+    <view class="notice-header">
+      <view class="platform">Snake 官方交易申明</view>
+      <view class="notice">交易规则</view>
+    </view>
+
+    <!-- 卖家须知内容 -->
+    <view class="notice-content">
+
+      <view class="notice-content-detail">
+        <view class="notice-content-detail-item">
+          <view class="title">
+            如何发布出售信息?
+          </view>
+          <view class="desc">
+            1. 通过搜索或分类，找到具体鞋款；</text>
+          </view>
+          <view class="desc">
+            2. 点击“我要出售”按钮，选择类型、尺码、售价、出售消息有效日期；
+          </view>
+          <view class="desc">
+            3. 支付商品金额对应押金，详见下表。（交易完成或信息过期后全额退还）；
+          </view>
+          <view class="desc">
+            3. 信息发布后在未成交的状态下，可随时撤销。
+          </view>
+        </view>
+
+        <view class="notice-content-detail-item">
+          <view class="title">
+            如何确保出售信息的有效？
+          </view>
+          <view class="desc">
+            1. 为确保出售信息的真实有效，每一条出售信息都需要支付交易押金(详见下表)，所有押金都会在交易完成或信息过期后全额退还。
+            <view>
+              <image src="../../images/global/支付交易押金.png"/>
+            </view>
+          </view>
+
+          <view class="desc">
+            2. puresnake平台将在出售信息被响应后向您通过短信、系统推送、站内信等方式实时发起通知；
+          </view>
+          <view class="desc">
+            3. 对于超过发货时间未做响应的（买家付款后卖家在规定时间内未发货、卖家确认出售买家72小时未付款），puresnake平台自动将相应押金的80%转给交易对方作为交易失信的补偿。
+          </view>
+        </view>
+
+        <view class="notice-content-detail-item">
+          <view class="title">
+            如何确保商品的真假？
+          </view>
+          <view class="desc">
+            1. 所有交易商品必须寄往puresnake仓库进行实物认证；
+          </view>
+          <view class="desc">
+            2. puresnake平台对鉴定结果为真的商品系挂认证吊牌；
+          </view>
+          <view class="desc">
+            3. 对于不确定真假的商品，建议卖家出售之前先自行鉴定。
+          </view>
+        </view>
+
+        <view class="notice-content-detail-item">
+          <view class="title">
+            真假的标准？
+          </view>
+          <view class="desc">
+            对于商品的真假，以第三方鉴定师团队结果为准。
+          </view>
+        </view>
+
+        <view class="notice-content-detail-item">
+          <view class="title">
+            卖家不发货是否有惩罚？
+          </view>
+          <view class="desc">
+            1. 卖家发起出售信息，需要支付商品金额对应押金（交易完成或信息过期后全额退还）；
+          </view>
+          <view class="desc">
+            2. 买家付款后，puresnake向卖家通过短信、系统推送、站内信等方式实时发起通知；
+          </view>
+          <view class="desc">
+            3. 对于超过发货时间未做响应的（买家付款后卖家在规定时间内未发货），puresnake平台自动将押金的80%转给买家作为卖家交易失信的补偿；
+          </view>
+          <view class="desc">
+            4. 建议卖家对出售信息及时更新，无效信息及时下架，避免不必要的押金损失。
+          </view>
+        </view>
+
+        <view class="notice-content-detail-item">
+          <view class="title">
+            买家购买意向反悔是否有惩罚？
+          </view>
+          <view class="desc">
+            1. 买家发起求购信息，需要支付商品金额对应押金（交易完成或信息过期后全额退还）；
+          </view>
+          <view class="desc">
+            2. 卖家确认出售，并支付出售押金后，puresnake向买家通过短信、系统推送、站内信等方式实时发起通知；
+          </view>
+          <view class="desc">
+            3. 对于超过发货时间未做响应的（卖家确认出售买家48小时未付款），puresnake平台自动将押金的80%转给卖家作为买家交易失信的补偿；
+          </view>
+          <view class="desc">
+            4. 建议买家对求购信息及时更新，无效信息及时下架，避免不必要的押金损失。
+          </view>
+        </view>
+
+        <view class="notice-content-detail-item">
+          <view class="title">
+            提现规则？
+          </view>
+          <view class="desc">
+            1. 目前仅支持将账户余额提现至支付宝账户；
+          </view>
+          <view class="desc">
+            2. 所有提现请求，将在1个工作日之内完成。
+          </view>
+        </view>
+
+        <view class="notice-content-notice">
+          <text style="color: #ff4455">*</text>
+          “puresnake”正在不断自我提升和改进，新规则上线后也是更加方便与实惠，再次感谢各位鞋迷的支持，我们将继续努力，为鞋迷们带来更好更专业的球鞋交易平台，让爱鞋的朋友都能交易无忧，收获满满。
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class TradingRules extends wepy.page {
+    config = {
+      navigationBarTitleText: '交易规则',
+      navigationBarTextStyle: 'white',
+      navigationBarBackgroundColor: '#000000'
+    }
+  }
+</script>
+
+<style lang="less">
+  @import "../../styles/notice.less";
+  view {
+    color: #000000;
+  }
+</style>

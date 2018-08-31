@@ -8,13 +8,13 @@
           <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu181ki99vj30460460sz.jpg" class="slide-image" width="355" height="150"/>
         </view>
         <view class="home-header-profile-info">
-          <view>程强</view>
-          <!-- <view wx:if="{{havePhoneNum}}">18679501585</view> -->
+          <view class="nick-name">程强</view>
 
-          <view wx:if="{{havePhoneNum}}">18679501585</view>
-          <view wx:else class="phone-empty">
-            绑定手机号
-          </view>
+          <view wx:if="{{havePhoneNum}}" class="user-phone">18679501585</view>
+
+          <navigator wx:else class="phone-empty" url="/pages/user/BindPhone">
+            绑定手机号 >>
+          </navigator>
         </view>
       </view>
 
@@ -22,25 +22,25 @@
       <view class="flex-layout home-header-property">
         <navigator class="home-header-property-item" url="/pages/user/collect">
           <view class="icon">
-            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu185eoj4oj301l01l742.jpg" class="slide-image" width="355" height="150"/>
+            <image src="../../images/user/user-collection@3x.png" />
           </view>
           <view class="title">
             收藏
           </view>
         </navigator>
 
-        <navigator class="home-header-property-item" url="/pages/user/collect">
+        <navigator class="home-header-property-item" url="/pages/user/AddressManagement">
           <view class="icon">
-            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu185eis0zj301f01l741.jpg" class="slide-image" width="355" height="150"/>
+            <image src="../../images/user/user-address@3x.png" />
           </view>
           <view class="title">
-            打卡
+            我的地址
           </view>
         </navigator>
 
         <navigator class="home-header-property-item" url="/pages/user/message">
           <view class="icon">
-            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu185eizngj301f01ft8h.jpg" class="slide-image" width="355" height="150"/>
+            <image src="../../images/user/user-info@3x.png" />
 
             <view v-if="infoNum">{{ infoNum }}</view>
           </view>
@@ -54,18 +54,24 @@
       <view class="flex-layout home-header-function">
         <navigator class="flex-layout home-header-function-buy" url="/pages/user/purchase">
           <view class="icon">
-            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu18c5uubuj301u01u3ya.jpg" class="slide-image" width="355" height="150"/>
+            <image src="../../images/user/user-buy@3x.png" />
           </view>
           <view class="title">
             购买
           </view>
+          <view class="right">
+            <image src="../../images/global/right@3x.png" />
+          </view>
         </navigator>
         <navigator class="flex-layout home-header-function-sell" url="/pages/user/purchase">
           <view class="icon">
-            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu18c5ukj0j302001x0sj.jpg" class="slide-image" width="355" height="150"/>
+            <image src="../../images/user/user-sell@3x.png" />
           </view>
           <view class="title">
             出售
+          </view>
+          <view class="right">
+            <image src="../../images/global/right@3x.png" />
           </view>
         </navigator>
       </view>
@@ -75,47 +81,22 @@
     <view class="home-content">
       <view class="list">
         <navigator class="flex-layout itemn" url="/pages/user/money">
-          <view class="icon">
-            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu18c5uubuj301u01u3ya.jpg" class="slide-image" width="355" height="150"/>
-          </view>
           <view class="title">
             我的资金
           </view>
+
+          <view class="icon">
+            <image src="../../images/user/user-funds@3x.png" />
+          </view>
         </navigator>
 
         <view class="flex-layout itemn">
-          <view class="icon">
-            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu18c5uubuj301u01u3ya.jpg" class="slide-image" width="355" height="150"/>
-          </view>
           <view class="title">
             我的护理
           </view>
-        </view>
 
-        <navigator class="flex-layout itemn" url="/pages/user/AddressManagement">
           <view class="icon">
-            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu18c5uubuj301u01u3ya.jpg" class="slide-image" width="355" height="150"/>
-          </view>
-          <view class="title">
-            我的地址
-          </view>
-        </navigator>
-
-        <view class="flex-layout itemn">
-          <view class="icon">
-            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu18c5uubuj301u01u3ya.jpg" class="slide-image" width="355" height="150"/>
-          </view>
-          <view class="title">
-            常见问题
-          </view>
-        </view>
-
-        <view class="flex-layout itemn">
-          <view class="icon">
-            <image src="http://ww1.sinaimg.cn/large/006nn93Fgy1fu18c5uubuj301u01u3ya.jpg" class="slide-image" width="355" height="150"/>
-          </view>
-          <view class="title">
-            关于我们
+            <image src="../../images/user/user-nurse@3x.png" />
           </view>
         </view>
       </view>
@@ -132,7 +113,8 @@
   export default class Home extends wepy.page {
     config = {
       navigationBarTitleText: '我的',
-      navigationBarTextStyle: 'black'
+      navigationBarTextStyle: 'white',
+      navigationBarBackgroundColor: '#000000'
     }
     components = {
       toast: Toast
@@ -159,16 +141,18 @@
 
 <style lang="less">
   .home {
+    height: 100vh;
+    background-color: #F5F5F5;
 
     &-header {
       background-color: #FFFFFF;
       &-profile {
         justify-content: flex-start;
-        padding: 30rpx;
+        padding: 50rpx;
 
         &-avatar {
-          width: 100rpx;
-          height: 100rpx;
+          width: 150rpx;
+          height: 150rpx;
           image {
             width: 100%;
             height: 100%;
@@ -176,31 +160,41 @@
           }
         }
         &-info {
-          margin-left: 30rpx;
+          margin-left: 35rpx;
+
+          .nick-name {
+            color: #353535;
+            font-size: 40rpx;
+          }
+
+          .user-phone {
+            color: #6A6A6A;
+            font-size: 24rpx;
+          }
+
           .phone-empty {
-            height: 48rpx;
-            padding-left: 16rpx;
-            padding-right: 16rpx;
-            text-align: center;
-            line-height: 48rpx;
+            padding: 6rpx 6rpx 6rpx 18rpx;
             color: #FFFFFF;
-            background-color: #FE480D;
+            font-size: 20rpx;
+            background-color: #FF8000;
+            box-shadow: 0 0 6 0 rgba(0, 0, 0, 0.16);
+            border-radius: 10rpx;
+            margin-top: 20rpx;
           }
         }
       }
 
       &-property {
-        padding-left: 60rpx;
-        padding-right: 60rpx;
-        border-bottom: 2rpx solid #f5f5f5;
+        padding-left: 100rpx;
+        padding-right: 100rpx;
+        padding-bottom: 25rpx;
+        border-bottom: 1rpx solid #EEEEEE;
         &-item {
-          flex: 1;
-          text-align:center;
 
           .icon {
             position: relative;
-            width: 36rpx;
-            height: 36rpx;
+            width: 45rpx;
+            height: 45rpx;
             margin-left: auto;
             margin-right: auto;
             image {
@@ -225,19 +219,22 @@
             }
           }
           .title {
+            color: #1B1B1B;
+            font-size: 20rpx;
+            margin-top: 12rpx;
           }
         }
       }
 
       &-function {
-        height: 120rpx;
-        line-height: 120rpx;
+        height: 100rpx;
+        line-height: 100rpx;
         > navigator {
           flex: 1;
           justify-content: center;
           .icon {
-            width: 60rpx;
-            height: 60rpx;
+            width: 40rpx;
+            height: 40rpx;
             image {
               width: 100%;
               height: 100%;
@@ -245,39 +242,55 @@
             }
           }
           .title {
-            margin-left: 10rpx;
+            color: #6A6A6A;
+            font-size: 24rpx;
+            margin-left: 47.5rpx;
+          }
+          .right {
+            margin-left: 30rpx;
+            image {
+              width: 9rpx;
+              height: 15rpx;
+              vertical-align: middle;
+            }
           }
         }
 
+        &-buy {
+
+        }
+
         &-sell {
-          border-left: 2rpx solid #f5f5f5;
+          border-left: 1rpx solid #EEEEEE;
         }
       }
     }
 
     &-content {
-      margin-top: 40rpx;
+      margin-top: 10rpx;
 
       .list {
         .itemn {
-          height: 120rpx;
-          line-height: 120rpx;
-          justify-content: flex-start;
+          height: 100rpx;
+          line-height: 100rpx;
+          justify-content: space-between;
           background-color: #FFFFFF;
-          border-bottom: 2rpx solid #f5f5f5;
-          padding-left: 20rpx;
+          border-bottom: 1rpx solid #EEEEEE;
+          padding-left: 50rpx;
+          padding-right: 50rpx;
+          .title {
+            color: #6A6A6A;
+            font-size: 24rpx;
+          }
 
           .icon {
-            width: 60rpx;
-            height: 60rpx;
+            width: 65rpx;
+            height: 45rpx;
             image {
               width: 100%;
               height: 100%;
               vertical-align:top;
             }
-          }
-          .title {
-            margin-left: 20rpx;
           }
         }
       }
