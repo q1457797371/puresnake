@@ -1,0 +1,208 @@
+<template>
+  <view class="sell">
+    <view class="sell-header">
+      <view class="flex-layout sell-header-list">
+        <view
+          wx:for="{{ sellTitleList }}"
+          wx:key="index"
+          class="sell-header-item"
+        >
+          <text
+            @tap="swichNav"
+            data-current="{{index}}"
+            class="{{currentTab == index ? 'active' : ''}}"
+          >
+            {{item.name ? item.name : item}}
+          </text>
+        </view>
+      </view>
+    </view>
+
+    <view class="sell-content">
+      <view class="sell-content-list">
+        <view class="sell-content-item" wx:for="{{ list }}" wx:key="index">
+          <view class="flex-layout sell-content-title">
+            <view>{{ item.time }}</view>
+            <view>{{ item.status }}</view>
+          </view>
+          <view class="flex-layout sell-content-detail">
+            <view>
+              <image class="news_section_img" src="{{ item.img }}"></image>
+            </view>
+
+            <view>
+              <view>{{ item.name }}</view>
+
+              <view class="flex-layout">
+                <view>平台现货</view>
+                <view>￥{{ item.price }}</view>
+              </view>
+            </view>
+          </view>
+          <view class="flex-layout sell-content-remarks">
+            <view>{{ item.itime }}后关闭</view>
+            <view>订单共计：￥{{ item.totalPrice }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <toast />
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'wepy-com-toast'
+
+  export default class Sell extends wepy.page {
+    config = {
+      navigationBarTitleText: '我的出售',
+      navigationBarTextStyle: 'white',
+      navigationBarBackgroundColor: '#000000'
+    }
+    components = {
+      toast: Toast
+    }
+
+    data = {
+      sellTitleList: ['待付款', '待发货', '待收货', '全部订单'],
+      currentTab: 0,
+      list: [
+        {
+          time: '2018-07-12 14:33',
+          status: '待付款',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054pdzej30c309x77f.jpg',
+          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝”43码',
+          price: '8999',
+          itime: '23:22',
+          totalPrice: '9233'
+        },
+        {
+          time: '2018-07-12 14:33',
+          status: '待付款',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054pdzej30c309x77f.jpg',
+          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝”43码',
+          price: '8999',
+          itime: '23:22',
+          totalPrice: '9233'
+        },
+        {
+          time: '2018-07-12 14:33',
+          status: '待付款',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054pdzej30c309x77f.jpg',
+          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝”43码',
+          price: '8999',
+          itime: '23:22',
+          totalPrice: '9233'
+        },
+        {
+          time: '2018-07-12 14:33',
+          status: '待付款',
+          img: 'http://ww1.sinaimg.cn/large/006nn93Fgy1fty054pdzej30c309x77f.jpg',
+          name: 'OFF-WHITE x AIR JORDAN 联名 2018 年”北卡蓝”43码',
+          price: '8999',
+          itime: '23:22',
+          totalPrice: '9233'
+        }
+      ]
+    }
+
+    computed = {
+    }
+
+    methods = {
+      /**
+       * @method 点击切换导航条
+       * @param { null }
+       * @param {index1, index2} index 商品下标索引
+       */
+      swichNav: function (e) {
+        this.currentTab = e.target.dataset.current
+      }
+    }
+
+    events = {
+    }
+
+    onLoad() {
+    }
+  }
+</script>
+
+<style lang="less">
+  .sell {
+    background-color: #F5F5F5;
+
+    &-header {
+      height: 90rpx;
+      line-height: 100%;
+      background-color: #FFFFFF;
+
+      &-list {
+        flex-wrap: wrap;
+        height: 100%;
+      }
+      &-item {
+        flex: 1;
+        height: 100%;
+        text-align:center;
+        border-bottom: 5rpx solid #FFFFFF;
+        text {
+          height: 100%;
+          display: inline-block;
+        }
+      }
+
+      .active {
+        color: #eb6623;
+        border-bottom: 5rpx solid #eb6623;
+      }
+    }
+
+    &-content {
+      &-list {
+
+      }
+
+      &-item {
+        margin-bottom: 20rpx;
+        background-color: #ffffff;
+        justify-content: flex-start;
+      }
+
+      &-title {
+        font-size: 28rpx;
+        border-bottom: 2rpx solid #F5F5F5;
+        padding-left: 30rpx;
+        padding-right: 30rpx;
+        view:nth-child(1) {
+          color: #2E2E2E;
+        }
+        view:nth-child(2) {
+          color: #FE480D;
+          font-weight: 600;
+        }
+      }
+
+      &-detail {
+        padding-left: 30rpx;
+        padding-right: 30rpx;
+        border-bottom: 2rpx solid #F5F5F5;
+
+        > view:nth-child(1) {
+          width: 200rpx;
+          height: 200rpx;
+          image {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        > view:nth-child(2) {
+          flex: 1;
+          margin-left: 20rpx;
+        }
+      }
+    }
+  }
+</style>

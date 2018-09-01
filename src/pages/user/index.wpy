@@ -63,7 +63,7 @@
             <image src="../../images/global/right@3x.png" />
           </view>
         </navigator>
-        <navigator class="flex-layout home-header-function-sell" url="/pages/user/purchase">
+        <navigator class="flex-layout home-header-function-sell" url="/pages/user/sell">
           <view class="icon">
             <image src="../../images/user/user-sell@3x.png" />
           </view>

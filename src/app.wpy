@@ -9,6 +9,7 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
+      // 'pages/user/purchase',
       'pages/news/index',
       'pages/market/index',
       'pages/market/category',
@@ -24,6 +25,7 @@ export default class extends wepy.app {
       'pages/user/collect',
       'pages/user/message',
       'pages/user/purchase',
+      'pages/user/sell',
       'pages/user/money',
       'pages/user/bindAlipay',
       'components/PlatformRules/SellerNotice',
